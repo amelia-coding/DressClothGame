@@ -1,0 +1,244 @@
+
+girl.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 533
+  size: 450, 481
+  orig: 450, 481
+  offset: 0, 0
+  index: -1
+browL
+  rotate: false
+  xy: 1998, 742
+  size: 41, 24
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+browR
+  rotate: false
+  xy: 748, 147
+  size: 44, 34
+  orig: 44, 34
+  offset: 0, 0
+  index: -1
+cloth_egypt
+  rotate: true
+  xy: 755, 786
+  size: 228, 389
+  orig: 228, 389
+  offset: 0, 0
+  index: -1
+cloth_europe
+  rotate: false
+  xy: 2, 74
+  size: 329, 457
+  orig: 329, 457
+  offset: 0, 0
+  index: -1
+cloth_normal
+  rotate: false
+  xy: 598, 183
+  size: 170, 197
+  orig: 170, 197
+  offset: 0, 0
+  index: -1
+cloth_republic
+  rotate: false
+  xy: 1785, 667
+  size: 211, 347
+  orig: 211, 347
+  offset: 0, 0
+  index: -1
+eyeL
+  rotate: false
+  xy: 854, 325
+  size: 69, 65
+  orig: 69, 65
+  offset: 0, 0
+  index: -1
+eyeR
+  rotate: false
+  xy: 770, 317
+  size: 82, 73
+  orig: 82, 73
+  offset: 0, 0
+  index: -1
+eyeinL
+  rotate: true
+  xy: 1054, 753
+  size: 31, 40
+  orig: 31, 40
+  offset: 0, 0
+  index: -1
+eyeinR
+  rotate: false
+  xy: 770, 183
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+hair_egypt1
+  rotate: false
+  xy: 454, 670
+  size: 299, 344
+  orig: 299, 344
+  offset: 0, 0
+  index: -1
+hair_egypt2
+  rotate: false
+  xy: 1054, 486
+  size: 268, 263
+  orig: 268, 263
+  offset: 0, 0
+  index: -1
+hair_europe1
+  rotate: false
+  xy: 1483, 717
+  size: 300, 297
+  orig: 300, 297
+  offset: 0, 0
+  index: -1
+hair_europe2
+  rotate: true
+  xy: 598, 120
+  size: 61, 148
+  orig: 61, 148
+  offset: 0, 0
+  index: -1
+hair_normal1
+  rotate: false
+  xy: 756, 499
+  size: 296, 285
+  orig: 296, 285
+  offset: 0, 0
+  index: -1
+hair_normal2
+  rotate: false
+  xy: 1146, 751
+  size: 335, 263
+  orig: 335, 263
+  offset: 0, 0
+  index: -1
+hair_republic1
+  rotate: false
+  xy: 454, 382
+  size: 300, 286
+  orig: 300, 286
+  offset: 0, 0
+  index: -1
+hair_republic2
+  rotate: true
+  xy: 1998, 768
+  size: 55, 44
+  orig: 55, 44
+  offset: 0, 0
+  index: -1
+hat_egypt
+  rotate: true
+  xy: 1324, 475
+  size: 274, 137
+  orig: 274, 137
+  offset: 0, 0
+  index: -1
+hat_europe
+  rotate: false
+  xy: 756, 392
+  size: 175, 105
+  orig: 175, 105
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 333, 118
+  size: 263, 262
+  orig: 263, 262
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 333, 75
+  size: 56, 41
+  orig: 56, 41
+  offset: 0, 0
+  index: -1
+props1_egypt
+  rotate: false
+  xy: 933, 428
+  size: 96, 69
+  orig: 96, 69
+  offset: 0, 0
+  index: -1
+props1_republic
+  rotate: false
+  xy: 2, 3
+  size: 241, 69
+  orig: 241, 69
+  offset: 0, 0
+  index: -1
+shoesL_egypt1
+  rotate: false
+  xy: 391, 92
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+shoesL_egypt2
+  rotate: false
+  xy: 933, 375
+  size: 92, 51
+  orig: 92, 51
+  offset: 0, 0
+  index: -1
+shoesL_normal
+  rotate: false
+  xy: 245, 2
+  size: 91, 70
+  orig: 91, 70
+  offset: 0, 0
+  index: -1
+shoesL_republic
+  rotate: true
+  xy: 770, 227
+  size: 88, 60
+  orig: 88, 60
+  offset: 0, 0
+  index: -1
+shoesR_egypt1
+  rotate: true
+  xy: 748, 120
+  size: 25, 29
+  orig: 25, 29
+  offset: 0, 0
+  index: -1
+shoesR_egypt2
+  rotate: true
+  xy: 1998, 917
+  size: 97, 38
+  orig: 97, 38
+  offset: 0, 0
+  index: -1
+shoesR_normal
+  rotate: false
+  xy: 925, 319
+  size: 90, 54
+  orig: 90, 54
+  offset: 0, 0
+  index: -1
+shoesR_republic
+  rotate: true
+  xy: 1998, 825
+  size: 90, 45
+  orig: 90, 45
+  offset: 0, 0
+  index: -1
+trousers_normal
+  rotate: true
+  xy: 333, 384
+  size: 147, 100
+  orig: 147, 100
+  offset: 0, 0
+  index: -1

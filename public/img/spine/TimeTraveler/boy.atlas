@@ -1,0 +1,314 @@
+
+boy.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 191
+  size: 169, 435
+  orig: 169, 435
+  offset: 0, 0
+  index: -1
+browL
+  rotate: false
+  xy: 331, 330
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+browR
+  rotate: false
+  xy: 370, 434
+  size: 39, 24
+  orig: 39, 24
+  offset: 0, 0
+  index: -1
+cloth_egypt1
+  rotate: false
+  xy: 355, 639
+  size: 203, 377
+  orig: 203, 377
+  offset: 0, 0
+  index: -1
+cloth_egypt2
+  rotate: false
+  xy: 325, 398
+  size: 42, 31
+  orig: 42, 31
+  offset: 0, 0
+  index: -1
+cloth_europe1
+  rotate: true
+  xy: 1774, 727
+  size: 140, 223
+  orig: 140, 223
+  offset: 0, 0
+  index: -1
+cloth_europe2
+  rotate: true
+  xy: 1395, 673
+  size: 111, 91
+  orig: 111, 91
+  offset: 0, 0
+  index: -1
+cloth_europe3
+  rotate: true
+  xy: 173, 179
+  size: 210, 156
+  orig: 210, 156
+  offset: 0, 0
+  index: -1
+cloth_normal1
+  rotate: true
+  xy: 121, 2
+  size: 175, 197
+  orig: 175, 197
+  offset: 0, 0
+  index: -1
+cloth_normal2
+  rotate: true
+  xy: 2011, 844
+  size: 172, 35
+  orig: 172, 35
+  offset: 0, 0
+  index: -1
+cloth_republic1
+  rotate: true
+  xy: 1189, 653
+  size: 131, 204
+  orig: 131, 204
+  offset: 0, 0
+  index: -1
+cloth_republic2
+  rotate: false
+  xy: 1609, 660
+  size: 109, 88
+  orig: 109, 88
+  offset: 0, 0
+  index: -1
+cloth_republic3
+  rotate: false
+  xy: 873, 644
+  size: 205, 147
+  orig: 205, 147
+  offset: 0, 0
+  index: -1
+eyeL
+  rotate: false
+  xy: 1961, 662
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+eyeR
+  rotate: true
+  xy: 709, 542
+  size: 65, 70
+  orig: 65, 70
+  offset: 0, 0
+  index: -1
+eyeinL
+  rotate: false
+  xy: 331, 360
+  size: 34, 36
+  orig: 34, 36
+  offset: 0, 0
+  index: -1
+eyeinR
+  rotate: true
+  xy: 1999, 727
+  size: 37, 40
+  orig: 37, 40
+  offset: 0, 0
+  index: -1
+hair_europe
+  rotate: false
+  xy: 1199, 786
+  size: 294, 230
+  orig: 294, 230
+  offset: 0, 0
+  index: -1
+hair_normal
+  rotate: false
+  xy: 873, 793
+  size: 324, 223
+  orig: 324, 223
+  offset: 0, 0
+  index: -1
+hair_republic
+  rotate: false
+  xy: 560, 753
+  size: 311, 263
+  orig: 311, 263
+  offset: 0, 0
+  index: -1
+handL
+  rotate: false
+  xy: 1488, 642
+  size: 119, 106
+  orig: 119, 106
+  offset: 0, 0
+  index: -1
+handR
+  rotate: true
+  xy: 784, 621
+  size: 130, 78
+  orig: 130, 78
+  offset: 0, 0
+  index: -1
+hat_egypt1
+  rotate: false
+  xy: 2, 628
+  size: 351, 388
+  orig: 351, 388
+  offset: 0, 0
+  index: -1
+hat_egypt2
+  rotate: false
+  xy: 1774, 869
+  size: 235, 147
+  orig: 235, 147
+  offset: 0, 0
+  index: -1
+hat_europe
+  rotate: true
+  xy: 2, 3
+  size: 186, 117
+  orig: 186, 117
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1495, 750
+  size: 266, 277
+  orig: 266, 277
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 1999, 766
+  size: 76, 47
+  orig: 76, 47
+  offset: 0, 0
+  index: -1
+props1_egypt
+  rotate: false
+  xy: 1772, 656
+  size: 96, 69
+  orig: 96, 69
+  offset: 0, 0
+  index: -1
+props1_europe
+  rotate: false
+  xy: 370, 460
+  size: 46, 27
+  orig: 46, 27
+  offset: 0, 0
+  index: -1
+shdL
+  rotate: true
+  xy: 1870, 668
+  size: 57, 89
+  orig: 57, 89
+  offset: 0, 0
+  index: -1
+shdR
+  rotate: false
+  xy: 325, 529
+  size: 46, 97
+  orig: 46, 97
+  offset: 0, 0
+  index: -1
+shoesL_egypt1
+  rotate: false
+  xy: 373, 527
+  size: 56, 32
+  orig: 56, 32
+  offset: 0, 0
+  index: -1
+shoesL_egypt2
+  rotate: true
+  xy: 325, 431
+  size: 96, 43
+  orig: 96, 43
+  offset: 0, 0
+  index: -1
+shoesL_europe
+  rotate: false
+  xy: 446, 584
+  size: 93, 53
+  orig: 93, 53
+  offset: 0, 0
+  index: -1
+shoesL_normal
+  rotate: true
+  xy: 1720, 658
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+shoesL_republic
+  rotate: false
+  xy: 446, 529
+  size: 93, 53
+  orig: 93, 53
+  offset: 0, 0
+  index: -1
+shoesR_egypt1
+  rotate: false
+  xy: 370, 489
+  size: 50, 36
+  orig: 50, 36
+  offset: 0, 0
+  index: -1
+shoesR_egypt2
+  rotate: false
+  xy: 1395, 617
+  size: 74, 54
+  orig: 74, 54
+  offset: 0, 0
+  index: -1
+shoesR_europe
+  rotate: false
+  xy: 541, 545
+  size: 82, 62
+  orig: 82, 62
+  offset: 0, 0
+  index: -1
+shoesR_normal
+  rotate: false
+  xy: 373, 561
+  size: 71, 76
+  orig: 71, 76
+  offset: 0, 0
+  index: -1
+shoesR_republic
+  rotate: false
+  xy: 625, 545
+  size: 82, 62
+  orig: 82, 62
+  offset: 0, 0
+  index: -1
+trousers_europe
+  rotate: true
+  xy: 560, 609
+  size: 142, 222
+  orig: 142, 222
+  offset: 0, 0
+  index: -1
+trousers_normal
+  rotate: true
+  xy: 1080, 653
+  size: 138, 107
+  orig: 138, 107
+  offset: 0, 0
+  index: -1
+trousers_republic
+  rotate: false
+  xy: 173, 391
+  size: 150, 235
+  orig: 150, 235
+  offset: 0, 0
+  index: -1

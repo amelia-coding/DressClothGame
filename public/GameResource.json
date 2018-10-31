@@ -1,0 +1,52 @@
+[{
+    "name": "ScreenText_spine",
+    "url": "./img/spine/ScreenText/screentext.json"
+}, {
+    "name": "TimeScene_spine",
+    "url": "./img/spine/TimeSence/timesence.json"
+}, {
+    "name": "Boy_spine",
+    "url": "./img/spine/TimeTraveler/boy.json"
+}, {
+    "name": "Girl_spine",
+    "url": "./img/spine/TimeTraveler/girl.json"
+}, {
+    "name": "HomeBg_jpg",
+    "url": "./img/Scene/HomeBg.png"
+}, {
+    "name": "HomeBgLitter_png",
+    "url": "./img/Scene/HomeBgLitter.png"
+}, {
+    "name": "BackButtonNormal_png",
+    "url": "./img/ButtonImg/BcakButtonNormal.png"
+}, {
+    "name": "BackButtonClick_png",
+    "url": "./img/ButtonImg/BackButtonClick.png"
+}, {
+    "name": "IndoorBg_jpg",
+    "url": "./img/Scene/IndoorBg.jpg"
+}, {
+    "name": "IndoorBackButtonNormal_png",
+    "url": "./img/ButtonImg/IndoorBackButtonNormal.png"
+}, {
+    "name": "IndoorBackButtonClick_png",
+    "url": "./img/ButtonImg/IndoorBackButtonClick.png"
+}, {
+    "name": "ResetProfileNormal_png",
+    "url": "./img/ButtonImg/ResetProfileNormal.png"
+}, {
+    "name": "ResetProfileClick_png",
+    "url": "./img/ButtonImg/ResetProfileClick.png"
+}, {
+    "name": "CrossTimeNormal_png",
+    "url": "./img/ButtonImg/CrossTimeNormal.png"
+}, {
+    "name": "CrossTimeClick_png",
+    "url": "./img/ButtonImg/CrossTimeClick.png"
+}, {
+    "name": "FrontCloset_png",
+    "url": "./img/ButtonImg/FrontCloset.png"
+}, {
+    "name": "ContentCloset_png",
+    "url": "./img/ButtonImg/ContentCloset.png"
+}]

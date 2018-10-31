@@ -1,0 +1,104 @@
+
+timesence.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+background_egypt1
+  rotate: true
+  xy: 1540, 1340
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+background_egypt2
+  rotate: true
+  xy: 1540, 1340
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+background_europe1
+  rotate: false
+  xy: 504, 198
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+background_europe2
+  rotate: false
+  xy: 504, 198
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+background_republic1
+  rotate: true
+  xy: 1540, 805
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+background_republic2
+  rotate: true
+  xy: 1540, 805
+  size: 533, 304
+  orig: 533, 304
+  offset: 0, 0
+  index: -1
+light1
+  rotate: false
+  xy: 504, 8
+  size: 194, 188
+  orig: 194, 188
+  offset: 0, 0
+  index: -1
+light2
+  rotate: false
+  xy: 1846, 1676
+  size: 200, 197
+  orig: 200, 197
+  offset: 0, 0
+  index: -1
+light3
+  rotate: false
+  xy: 1204, 587
+  size: 300, 317
+  orig: 300, 317
+  offset: 0, 0
+  index: -1
+light4
+  rotate: false
+  xy: 2, 2
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+line
+  rotate: true
+  xy: 1204, 906
+  size: 967, 334
+  orig: 967, 334
+  offset: 0, 0
+  index: -1
+road
+  rotate: false
+  xy: 2, 1312
+  size: 1200, 561
+  orig: 1200, 561
+  offset: 0, 0
+  index: -1
+star1
+  rotate: false
+  xy: 2, 504
+  size: 1200, 396
+  orig: 1200, 396
+  offset: 0, 0
+  index: -1
+star2
+  rotate: false
+  xy: 2, 902
+  size: 1200, 408
+  orig: 1200, 408
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+screentext.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back
+  rotate: false
+  xy: 2, 183
+  size: 838, 320
+  orig: 838, 320
+  offset: 0, 0
+  index: -1
+cloth
+  rotate: false
+  xy: 679, 98
+  size: 72, 83
+  orig: 72, 83
+  offset: 0, 0
+  index: -1
+hat
+  rotate: false
+  xy: 842, 184
+  size: 78, 58
+  orig: 78, 58
+  offset: 0, 0
+  index: -1
+shoes
+  rotate: true
+  xy: 936, 247
+  size: 66, 73
+  orig: 66, 73
+  offset: 0, 0
+  index: -1
+text1
+  rotate: false
+  xy: 2, 2
+  size: 185, 179
+  orig: 185, 179
+  offset: 0, 0
+  index: -1
+text2
+  rotate: true
+  xy: 518, 34
+  size: 147, 159
+  orig: 147, 159
+  offset: 0, 0
+  index: -1
+text3
+  rotate: false
+  xy: 352, 35
+  size: 164, 146
+  orig: 164, 146
+  offset: 0, 0
+  index: -1
+text4
+  rotate: false
+  xy: 189, 2
+  size: 161, 179
+  orig: 161, 179
+  offset: 0, 0
+  index: -1
+text5
+  rotate: false
+  xy: 842, 315
+  size: 172, 188
+  orig: 172, 188
+  offset: 0, 0
+  index: -1
+trousers
+  rotate: false
+  xy: 842, 244
+  size: 92, 69
+  orig: 92, 69
+  offset: 0, 0
+  index: -1

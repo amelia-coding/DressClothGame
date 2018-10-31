@@ -1,0 +1,10 @@
+{
+    "boy": {
+        "SlotName": ["cloth1", "cloth2", "cloth3", "handL", "handR", "props1",
+            "shdL", "shdR", "shoesL1", "shoesL2", "shoesR1", "shoesR2", "trousers"
+        ]
+    },
+    "girl": {
+        "SlotName": ["cloth", "props1", "shoesL1", "shoesL2", "shoesR1", "shoesR2"]
+    }
+}
