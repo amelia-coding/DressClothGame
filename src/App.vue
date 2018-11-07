@@ -60,6 +60,8 @@ export default {
         //加载换装系统
         self.axios.get("./ClothSystem.json").then(response => {
           console.log(response);
+          Garbage.clearGarBage("classicon");
+          Garbage.setGarBage("classicon", response.data);
         });
         //开始加载游戏的全部资源
         self.axios.get("./GameResource.json").then(response => {

@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 import "pixi-spine"
-import PixiSlider from "../lib/PixiSlider.js"
+import PixiSlider from "../lib/PixiSlider.js";
 import {
     createdSprite,
     createdSpine
@@ -225,6 +225,4 @@ export default class HomePages extends PIXI.Container {
         this.parent.removeChildren();
         // this = null;
     }
-
-
 }

@@ -49,4 +49,124 @@
 }, {
     "name": "ContentCloset_png",
     "url": "./img/ButtonImg/ContentCloset.png"
+}, {
+    "name": "decoratebtns_png",
+    "url": "./img/decoratebtns.png"
+}, {
+    "name": "classicon@cloth@cloth@cloth_normal@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@cloth@cloth@cloth_normal@click.png"
+}, {
+    "name": "classicon@cloth@cloth@cloth_normal@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@cloth@cloth@cloth_normal@normal.png"
+}, {
+    "name": "classicon@hair@hair@hair_normal@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hair@hair@hair_normal@click.png"
+}, {
+    "name": "classicon@hair@hair@hair_normal@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hair@hair@hair_normal@normal.png"
+}, {
+    "name": "classicon@hat@hat@hat_normal@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hat@hat@hat_normal@click.png"
+}, {
+    "name": "classicon@hat@hat@hat_normal@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hat@hat@hat_normal@normal.png"
+}, {
+    "name": "classicon@props@pros1@props1_normal@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@props@pros1@props1_normal@click.png"
+}, {
+    "name": "classicon@props@pros1@props1_normal@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@props@pros1@props1_normal@normal.png"
+}, {
+    "name": "classicon@shoes@shoes@shoes_normal@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@shoes@shoes@shoes_normal@click.png"
+}, {
+    "name": "classicon@shoes@shoes@shoes_normal@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@shoes@shoes@shoes_normal@normal.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_egypt@click_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_egypt@click.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_egypt@normal_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_egypt@normal.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_europe@click_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_europe@click.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_europe@normal_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_europe@normal.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_republix@click_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_republix@click.png"
+}, {
+    "name": "Girl@dress@cloth@cloth_republix@normal_png",
+    "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_republix@normal.png"
+}, {
+    "name": "Girl@hair@hair1@hair_egypt1@click_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_egypt1@click.png"
+}, {
+    "name": "Girl@hair@hair1@hair_egypt1@norml_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_egypt1@norml.png"
+}, {
+    "name": "Girl@hair@hair1@hair_europe1@click_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_europe1@click.png"
+}, {
+    "name": "Girl@hair@hair1@hair_europe1@normal_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_europe1@normal.png"
+}, {
+    "name": "Girl@hair@hair1@hair_republic1@click_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_republic1@click.png"
+}, {
+    "name": "Girl@hair@hair1@hair_republic1@normal_png",
+    "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_republic1@normal.png"
+}, {
+    "name": "Girl@hat@hat@hat_egypt@click_png",
+    "url": "./img/DressAll/Girl/Hat/Girl@hat@hat@hat_egypt@click.png"
+}, {
+    "name": "Girl@hat@hat@hat_egypt@normal_png",
+    "url": "./img/DressAll/Girl/Hat/Girl@hat@hat@hat_egypt@normal.png"
+}, {
+    "name": "Girl@hat@hat@hat_europe@click_png",
+    "url": "./img/DressAll/Girl/Hat/Girl@hat@hat@hat_europe@click.png"
+}, {
+    "name": "Girl@hat@hat@hat_europe@normal_png",
+    "url": "./img/DressAll/Girl/Hat/Girl@hat@hat@hat_europe@normal.png"
+}, {
+    "name": "Girl@props@props1@props1_republic@click_png",
+    "url": "./img/DressAll/Girl//props/Girl@props@props1@props1_republic@click.png"
+}, {
+    "name": "Girl@props@props1@props1_republic@normal_png",
+    "url": "./img/DressAll/Girl/props/Girl@props@props1@props1_republic@normal.png"
+}, {
+    "name": "Girl@props1@props1@props1_egypt@clickl_png",
+    "url": "./img/DressAll/Girl/props/Girl@props1@props1@props1_egypt@clickl.png"
+}, {
+    "name": "Girl@props1@props1@props1_egypt@normal_png",
+    "url": "./img/DressAll/Girl/props/Girl@props1@props1@props1_egypt@normal.png"
+}, {
+    "name": "Girl@shoes@shoes@shoesL_egypt@click_png",
+    "url": "./img/DressAll/Girl/Shoes/Girl@shoes@shoes@shoesL_egypt@click.png"
+}, {
+    "name": "Girl@shoes@shoes@shoesL_egypt@normal_png",
+    "url": "./img/DressAll/Girl/Shoes/Girl@shoes@shoes@shoesL_egypt@normal.png"
+}, {
+    "name": "Girl@shoes@shoesL_republic@click_png",
+    "url": "./img/DressAll/Girl/Shoes/Girl@shoes@shoesL_republic@click.png"
+}, {
+    "name": "Girl@shoes@shoesL_republic@normal_png",
+    "url": "./img/DressAll/Girl/Shoes/Girl@shoes@shoesL_republic@normal.png"
+}, {
+    "name": "classicon@cloth@cloth@cloth_normal@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@cloth@cloth@cloth_normal@normal_s.png"
+}, {
+    "name": "classicon@hair@hair@hair_normal@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hair@hair@hair_normal@normal_s.png"
+}, {
+    "name": "classicon@hat@hat@hat_normal@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hat@hat@hat_normal@normal_s.png"
+}, {
+    "name": "classicon@props@pros1@props1_normal@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@props@pros1@props1_normal@normal_s.png"
+}, {
+    "name": "classicon@shoes@shoes@shoes_normal@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@shoes@shoes@shoes_normal@normal_s.png"
 }]

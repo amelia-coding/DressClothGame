@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import "pixi-spine"
-import PixiSlider from "../lib/PixiSlider.js"
+import PixiSlider from "../lib/PixiSlider.js";
+import RightDrawer from "../lib/RightDrawer.js";
 import {
     createdSprite,
     createdSpine
@@ -35,6 +36,8 @@ export default class HomeGamePlay extends PIXI.Container {
         this.GirlSpineEvent = null;
         this.BoySpine = null;
         this.BoySpineEvent = null;
+        this.classicon = null;
+        this.RightDrawer = null;
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
@@ -43,6 +46,9 @@ export default class HomeGamePlay extends PIXI.Container {
         })()
         this.Gender = Garbage.getGarBage("Gender");
         console.log(this.Gender);
+        //获取数据
+        this.classicon = Garbage.getGarBage("classicon");
+
         let self = this;
         createdSprite({
             $this: self,
@@ -129,6 +135,7 @@ export default class HomeGamePlay extends PIXI.Container {
             $alias: "ContentCloset_png",
             $x: 1350,
             $y: 0,
+            $addChild: false
         });
         //前衣柜
         this.FrontCloset = createdSprite({
@@ -148,6 +155,15 @@ export default class HomeGamePlay extends PIXI.Container {
             $addChild: true
         });
 
+        //右衣柜
+        this.RightDrawer = new RightDrawer();
+        this.RightDrawer.x = 1670;
+        this.RightDrawer.y = 30;
+        //主要分类
+        this.RightDrawer.setClassDrawerArr(self.classicon.girl.classIconArr);
+        this.RightDrawer.setParticularClothes(self.classicon.girl.particularClothes);
+        this.RightDrawer.init();
+        this.addChild(this.RightDrawer)
 
 
     }
@@ -182,6 +198,4 @@ export default class HomeGamePlay extends PIXI.Container {
         this.addedHomePageStage = null;
         this.parent.removeChildren();
     }
-
-
 }

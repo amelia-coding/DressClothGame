@@ -5,6 +5,69 @@
         ]
     },
     "girl": {
-        "SlotName": ["cloth", "props1", "shoesL1", "shoesL2", "shoesR1", "shoesR2"]
+        "SlotName": ["cloth", "props1", "shoesL1", "shoesL2", "shoesR1", "shoesR2"],
+        "classIconArrClick": [
+            "classicon@cloth@cloth@cloth_normal@click_png",
+            "classicon@hair@hair@hair_normal@click_png",
+            "classicon@hat@hat@hat_normal@click_png",
+            "classicon@props@pros1@props1_normal@click_png",
+            "classicon@shoes@shoes@shoes_normal@click_png"
+        ],
+        "classIconArr": [
+            "classicon@cloth@cloth@cloth_normal@normal_png",
+            "classicon@hair@hair@hair_normal@normal_png",
+            "classicon@hat@hat@hat_normal@normal_png",
+            "classicon@props@pros1@props1_normal@normal_png",
+            "classicon@shoes@shoes@shoes_normal@normal_png"
+        ],
+        "particularClothes": {
+            "cloth": [
+                "Girl@dress@cloth@cloth_egypt@normal_png",
+                "Girl@dress@cloth@cloth_europe@normal_png",
+                "Girl@dress@cloth@cloth_republix@normal_png"
+            ],
+            "hair": [
+                "Girl@hair@hair1@hair_egypt1@norml_png",
+                "Girl@hair@hair1@hair_europe1@normal_png",
+                "Girl@hair@hair1@hair_republic1@normal_png"
+            ],
+            "hat": [
+                "Girl@hat@hat@hat_egypt@normal_png",
+                "Girl@hat@hat@hat_europe@normal_png"
+            ],
+            "props": [
+                "Girl@props@props1@props1_republic@normal_png",
+                "Girl@props1@props1@props1_egypt@normal_png"
+            ],
+            "shoes": [
+                "Girl@shoes@shoes@shoesL_egypt@normal_png",
+                "Girl@shoes@shoesL_republic@normal_png"
+            ]
+        },
+        "particularClothesClick": {
+            "cloth": [
+                "Girl@dress@cloth@cloth_egypt@click_png",
+                "Girl@dress@cloth@cloth_europe@click_png",
+                "Girl@dress@cloth@cloth_republix@click_png"
+            ],
+            "hair": [
+                "Girl@hair@hair1@hair_egypt1@click_png",
+                "Girl@hair@hair1@hair_europe1@click_png",
+                "Girl@hair@hair1@hair_republic1@click_png"
+            ],
+            "hat": [
+                "Girl@hat@hat@hat_egypt@click_png",
+                "Girl@hat@hat@hat_europe@click_png"
+            ],
+            "props": [
+                "Girl@props@props1@props1_republic@click_png",
+                "Girl@props1@props1@props1_egypt@clickl_png"
+            ],
+            "shoes": [
+                "Girl@shoes@shoes@shoesL_egypt@click_png",
+                "Girl@shoes@shoesL_republic@click_png"
+            ]
+        }
     }
+
 }
