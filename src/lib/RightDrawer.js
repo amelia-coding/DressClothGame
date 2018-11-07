@@ -60,8 +60,8 @@ class RightDrawer extends PIXI.Container {
             this.clothesDrawer_slider.slideOffset = 25;
             this.clothesDrawer_slider.swiperDirection = 'vertical';
             this.clothesDrawer_slider.slideColorAlpha = 0;
-            this.clothesDrawer_slider.x = -150;
-            this.clothesDrawer_slider.y = 50;
+            this.clothesDrawer_slider.x = -230; //改具体衣服的横坐标的位置
+            this.clothesDrawer_slider.y = 0;
             this.clothesDrawer_slider.init();
             // return;
             // this.clothesDrawer.getChildAt(1).slides = this.clothesDrawerBtnArr.length;
@@ -73,7 +73,7 @@ class RightDrawer extends PIXI.Container {
                     objectSlotBg.beginFill(0xffffff, 1);
                     objectSlotBg.drawRoundedRect(0, 0, 180, 180, 20);
                     objectSlotBg.endFill();
-                    objectSlotBg.x = i * (objectSlotBg.width + 15);
+                    objectSlotBg.x = 15;
                     objectDrawPane.addChild(objectSlotBg);
                     objectSlotBg.alpha = 0; //背景白色控制
                 }
@@ -85,8 +85,9 @@ class RightDrawer extends PIXI.Container {
             let chothIndex = 0;
             //具体刷新的衣服
             currentClothesArr.forEach((item, index) => {
-                //console.log(item);
-                //console.log("item...")
+                // console.log(item);
+                // console.log("item...")
+
                 if (self.clothesDrawerBtnArr.length > 0) {
                     //具体衣服;
                     item.children.forEach((item2, index2) => {
@@ -97,14 +98,17 @@ class RightDrawer extends PIXI.Container {
                         //clothes.alpha = 1;
                         //item2.addChild(clothes); 改了这句话
                         item.addChild(clothes);
+                        console.log(self.clothesDrawerBtnArr[chothIndex] + "......@")
                         if (self.clothesDrawerBtnArr[chothIndex] == undefined) {
                             item2.alpha = 0;
                         } else {
                             item2.interactive = true;
                             if (!(index == 0 && index2 == 0)) {
-                                item2.on('pointertap', self.clothesItem_TapHandler.bind(self, chothIndex), self);
+                                //这个是具体衣服事件...
+                                item2.on('pointertap', self.clothesItem_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             } else {
-                                item2.on('pointertap', self.clearBtn_TapHandler.bind(self, chothIndex), self);
+                                //这个是清除按钮...
+                                item2.on('pointertap', self.clearBtn_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             }
                         }
                         chothIndex++;
@@ -122,25 +126,31 @@ class RightDrawer extends PIXI.Container {
         if (this.clothesDrawer_slider._movedPosArr.length < 3) {
 
             if (this.emitClearCloth) {
-                this.emitClearCloth.call(this, self.classIconName);
+                this.emitClearCloth.call(this, index);
             }
 
         }
     };
     //点击具体的衣服物件触发;
     clothesItem_TapHandler(index, evt) {
+        //console.log(index);
+        //console.log("index...")
         if (this.clothesDrawer_slider._movedPosArr.length < 3) {
-            let clotheTexture = evt.currentTarget.getChildAt(0).texture.textureCacheIds[0];
-            let hasScene = clotheTexture.indexOf('scene') != -1; //有场景存在;
-            if (hasScene) {
-                if (this.emitChangeScene) {
-                    this.emitChangeScene.call(this, clotheTexture);
-                }
-            } else {
-                if (this.emitChangeCloth) {
-                    this.emitChangeCloth.call(this, clotheTexture);
-                }
-            }
+            this.emitChangeCloth.call(this, index);
+            //this
+            //具体名字
+            //let clotheTexture = evt.currentTarget.getChildAt(0).texture.textureCacheIds[0];
+            //let hasScene = clotheTexture.indexOf('scene') != -1; //有场景存在;
+            // let hasScene = 
+            // if (hasScene) {
+            //     if (this.emitChangeScene) {
+            //         this.emitChangeScene.call(this, index);
+            //     }
+            // } else {
+            //     if (this.emitChangeCloth) {
+            //         this.emitChangeCloth.call(this, index);
+            //     }
+            // }
 
         }
 
@@ -189,12 +199,16 @@ class RightDrawer extends PIXI.Container {
                 masker.beginFill(0xff0000);
                 masker.drawRoundedRect(0, 0, classDrawer_slider.swiperWidth, classDrawer_slider.swiperHeight, 25);
                 masker.endFill();
+                this.bg = new PIXI.Sprite(PIXI.Texture.from("FrontCloset_png"));
+                this.bg.x = 5;
+                this.bg.y = -13;
+                this.addChild(this.bg);
                 this.addChild(masker);
+
                 this.classDrawer.mask = masker;
-                this.addChild(this.classDrawer);
+                this.addChild(this.classDrawer); //添加分类的盒子
                 this.classDrawer.x = 218;
                 //这句话结束
-
                 //背景图及其具体实例的类别的;
                 for (let i = 0; i < this.classDrawerBtnArr.length; i++) {
                     // var classDrawer_bg = new PIXI.Sprite(PIXI.Texture.from('classbtns_png'));
@@ -229,18 +243,24 @@ class RightDrawer extends PIXI.Container {
                 //这个是具体的箱子衣柜
                 objectDrawBg.pivot.x = 0;
                 objectDrawBg.pivot.y = 0;
-                objectDrawBg.x = -320;
+                objectDrawBg.x = -320; //默认位置
+                //objectDrawBg.x = -80; //设置具体盒子的位置
                 objectDrawBg.y = -38;
-                this.clothesDrawer.addChild(objectDrawBg);
-                this.clothesDrawer.addChild(this.clothesDrawer_slider);
-                this.addChild(this.clothesDrawer);
-                this.clothesDrawer.x = 600;
+                this.clothesDrawer.addChild(objectDrawBg); //添加背景
+                this.clothesDrawer.addChild(this.clothesDrawer_slider); //添加滑块
+                this.addChild(this.clothesDrawer); //添加具体的盒子内的衣服
+
+                console.log(this.getChildIndex(this.clothesDrawer)); //3
+                console.log(this.getChildIndex(this.classDrawer)); //2
+                this.setChildIndex(this.classDrawer, 3)
+                this.setChildIndex(this.bg, 2)
+                this.clothesDrawer.x = 250;
 
                 // //背景;
                 //小按钮初始化...
                 this.clothesLittleBtn = new PIXI.Sprite();
-                this.clothesLittleBtn.x = -295;
-                this.clothesLittleBtn.y = 480;
+                this.clothesLittleBtn.x = -300;
+                this.clothesLittleBtn.y = 475;
                 this.clothesDrawer.addChild(this.clothesLittleBtn);
                 this.clothesLittleBtn.interactive = true;
                 this.clothesLittleBtn.on('pointertap', this.clothesLittleBtn_TapHandler, this);
@@ -348,7 +368,7 @@ class RightDrawer extends PIXI.Container {
     hideClassDrawer($callback = function() {}, $time = .3) {
 
         TweenMax.to(this.classDrawer, $time, {
-            x: 218,
+            x: 218, //218
             onComplete: function() {
                 $callback();
             }
@@ -366,7 +386,7 @@ class RightDrawer extends PIXI.Container {
 
     hideclothesDrawer($callback = function() {}, $time = .3) {
         TweenMax.to(this.clothesDrawer, $time, {
-            x: 600,
+            x: 250, //600
             onComplete: function() {
                 $callback();
             }

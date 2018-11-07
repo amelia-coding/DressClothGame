@@ -38,6 +38,13 @@ export default class HomeGamePlay extends PIXI.Container {
         this.BoySpineEvent = null;
         this.classicon = null;
         this.RightDrawer = null;
+        this.ClothDetail = {
+            Gender: null,
+            Cloth: null,
+            SlotName: null,
+            AttacetmentName: null,
+            End: null
+        }
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
@@ -143,6 +150,7 @@ export default class HomeGamePlay extends PIXI.Container {
             $alias: "FrontCloset_png",
             $x: 1679,
             $y: 24,
+            $addChild: false
         });
         //人物
         this.GirlSpine = createdSpine({
@@ -163,9 +171,89 @@ export default class HomeGamePlay extends PIXI.Container {
         this.RightDrawer.setClassDrawerArr(self.classicon.girl.classIconArr);
         this.RightDrawer.setParticularClothes(self.classicon.girl.particularClothes);
         this.RightDrawer.init();
-        this.addChild(this.RightDrawer)
+        this.addChild(this.RightDrawer);
+        //开始具体换装衣服
+        //console.log(this.classicon);
 
 
+        this.RightDrawer.setEmitChangeCloth((clothDetailName) => {
+            let self = this;
+            //console.log(clothDetailName)
+            self.getSlotAndAttacetment(clothDetailName); //把具体化
+
+            //第一步 获取插槽
+            //第二步 获取插槽具体的位置
+            //第三步 获取插槽需要的附件
+            //第四步 把附件放到插槽上去...
+            //第一步 获取插槽
+
+            let SlotName = []; //插槽的名字
+            for (let item in this.classicon.girl.SlotAndAttachment) {
+                //console.log(item);
+                if (item.indexOf(self.ClothDetail.SlotName) != -1) {
+                    SlotName.push(item)
+                }
+            }
+            //console.log(SlotName);
+
+            let SlotObjAll = []; //获取插槽对象
+            console.log(SlotName);
+            console.log("SlotName...")
+            SlotName.forEach((item) => {
+                let obj = {}
+                obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //插槽对象
+                this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {
+                    console.log(item1);
+                    console.log("item1...");
+                    console.log(self.ClothDetail.AttacetmentName)
+                    if (item1.indexOf(self.ClothDetail.AttacetmentName) != -1) {
+                        obj.AttacetmentName = item1;
+                        //console.log("内部条件执行...")
+                    }
+                }); //附件名字
+                //console.log(obj.AttacetmentName);
+                //console.log("obj.AttacetmentName...")
+                if (obj.AttacetmentName != undefined) {
+                    let SlotNum = obj.SlotObj.data.index; //插槽的位置
+                    console.log(obj.AttacetmentName)
+                    obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //附件的对象
+                    SlotObjAll.push(obj); //对象
+                }
+            });
+            console.log(SlotObjAll)
+            console.log("SlotObjAll...")
+            SlotObjAll.forEach((item) => {
+                item.SlotObj.setAttachment(item.AttachmentObj);
+            })
+
+
+        });
+        this.RightDrawer.setEmitClearCloth((clothDetailName) => {
+            //self.getSlotAndAttacetment(clothDetailName); //把具体化
+            // this.ClothDetail.AttacetmentName = this.ClothDetail.AttacetmentName.split("_")[0] + "_normal";
+            // let SlotObj = self.GirlSpine.skeleton.findSlot(self.ClothDetail.SlotName); //插槽对象
+            // let SlotNum = SlotObj.data.index; //插槽的位置
+            // let AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, self.ClothDetail.AttacetmentName);
+            // SlotObj.setAttachment(AttachmentObj);
+            // this.ClothDetail.AttacetmentName = 
+        })
+
+
+    }
+    takeoffSingleCloth($slotName) {
+        this.GirlSpine.skeleton.findSlot($slotName).setAttachment(null);
+    }
+    getSlotAndAttacetment(clothDetailName) {
+        //这个参数是 名字
+        //结果把各个具体化
+        let $nameDetail = clothDetailName.split("@");
+        //console.log($nameDetail);
+        this.ClothDetail.Gender = $nameDetail[0];
+        this.ClothDetail.Cloth = $nameDetail[1];
+        this.ClothDetail.SlotName = $nameDetail[2];
+        this.ClothDetail.AttacetmentName = $nameDetail[3].split("_")[1];
+        this.ClothDetail.End = $nameDetail[4];
+        //console.log(this.ClothDetail);
     }
     clearClass() {
         let self = this;
