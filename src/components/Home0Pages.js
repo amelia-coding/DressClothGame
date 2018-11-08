@@ -12,7 +12,7 @@ import {
     Garbage,
     SceneManager
 } from "../lib/EasyPIXI"
-import HomeGamePlay from "./HomeGamePlay.js"
+import HomeGamePlay from "./Home1GamePlay.js"
 export default class HomePages extends PIXI.Container {
     constructor() {
         super();
@@ -70,6 +70,7 @@ export default class HomePages extends PIXI.Container {
         mySwiper.slides = 2;
         mySwiper.slideOffset = 0;
         mySwiper.smoothingMode = false;
+        //mySwiper.alpha = 0;
         mySwiper.init();
         this.addChild(mySwiper);
         //在滑块中添加内容

@@ -13,8 +13,9 @@
 
 <script>
 import { SceneManager, Garbage } from "./lib/EasyPIXI.js";
-import HomePages from "./components/HomePages.js";
-import HomeGamePlay from "./components/HomeGamePlay.js";
+import HomePages from "./components/Home0Pages.js";
+import HomeGamePlay from "./components/Home1GamePlay.js";
+import HomeTransform from "./components/Home2Transform.js";
 var CanvasApp;
 export default {
   name: "App",
@@ -44,9 +45,10 @@ export default {
       SceneManager.stage = CanvasApp.stage;
       this.gameStart().then(() => {
         console.log("开始加载首页...");
-        //SceneManager.run(new HomePages());
         //测试使用
-        SceneManager.run(new HomeGamePlay());
+        //SceneManager.run(new HomePages());
+        //SceneManager.run(new HomeGamePlay());
+        SceneManager.run(new HomeTransform());
       });
     },
     async gameStart() {

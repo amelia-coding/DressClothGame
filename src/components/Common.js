@@ -28,17 +28,31 @@ function createdSprite({
     $addChild && $this.addChild($name);
     return $name;
 }
+class commonBg {
+    constructor({
+        _this = self,
+    }) {
+        this.BackButtonNormal = createdSprite({
+            $this: _this,
+            $alias: "IndoorBackButtonNormal_png",
+            $interactive: true,
+            $buttonMode: true,
+            $x: 85,
+            $y: 41,
+        });
+        this.BackButtonClick = createdSprite({
+            $this: _this,
+            $alias: "IndoorBackButtonClick_png",
+            $interactive: true,
+            $buttonMode: true,
+            $x: 85,
+            $y: 41,
+            $visible: false,
+        });
+    }
 
-// this.ScreenTextSpine = new PIXI.spine.Spine(PIXI.loader.resources["ScreenText_spine"].spineData)
-// this.ScreenTextSpine.state.setAnimation(0, "start", false);
-// this.ScreenTextSpine.state.tracks[0].listener = {
-//     complete: () => {
-//         this.ScreenTextSpine.state.setAnimation(0, "normal", true)
-//     }
-// }
-// this.ScreenTextSpine.x = 1000;
-// this.ScreenTextSpine.y = 140;
-// this.addChild(this.ScreenTextSpine);
+}
+
 function createdSpine({
     $this = self,
     $name = {},
@@ -113,4 +127,5 @@ export {
     createdText,
     createdStyle,
     createdSpine,
+    commonBg
 }

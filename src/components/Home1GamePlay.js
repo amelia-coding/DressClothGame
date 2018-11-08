@@ -4,7 +4,8 @@ import PixiSlider from "../lib/PixiSlider.js";
 import RightDrawer from "../lib/RightDrawer.js";
 import {
     createdSprite,
-    createdSpine
+    createdSpine,
+    commonBg
 } from "./Common";
 import {
     TimelineMax
@@ -13,7 +14,8 @@ import {
     Garbage,
     SceneManager
 } from "../lib/EasyPIXI";
-import HomePages from "./HomePages.js"
+import HomePages from "./Home0Pages.js"
+import HomeTransform from "./Home2Transform.js"
 export default class HomeGamePlay extends PIXI.Container {
     constructor() {
         super();
@@ -38,13 +40,45 @@ export default class HomeGamePlay extends PIXI.Container {
         this.BoySpineEvent = null;
         this.classicon = null;
         this.RightDrawer = null;
+        this.Common = null;
         this.ClothDetail = {
             Gender: null,
             Cloth: null,
             SlotName: null,
             AttacetmentName: null,
             End: null
-        }
+        };
+        this.suitAll = [
+            [
+                "Girl@hat@hat@hat_normal@normal_png",
+                "Girl@hair@hair@hair_normal@normal_png",
+                "Girl@props@props1@props1_normal@normal_png",
+                "Girl@dress@cloth@cloth_normal@normal_png",
+                "Girl@shoes@shoes@shoes_normal@normal_png",
+                "Girl@suit@suit@suit@normal_png" //辅助使用
+            ],
+            [
+                "Girl@hat@hat@hat_egypt@normal_png",
+                "Girl@hair@hair@hair_egypt@norml_png",
+                "Girl@dress@cloth@cloth_egypt@normal_png",
+                "Girl@shoes@shoes@shoes_egypt@normal_png",
+                "Girl@suit@suit@suit@normal_png" //辅助使用
+            ],
+            [
+                "Girl@hair@hair@hair_republic@normal_png",
+                "Girl@props@props1@props1_republic@normal_png",
+                "Girl@dress@cloth@cloth_republic@normal_png",
+                "Girl@shoes@shoes@shoes_republic@normal_png",
+                "Girl@suit@suit@suit@normal_png" //辅助使用
+            ],
+            [
+                "Girl@hat@hat@hat_europe@normal_png",
+                "Girl@hair@hair@hair_europe@normal_png",
+                "Girl@dress@cloth@cloth_europe@normal_png",
+                "Girl@shoes@shoes@shoes_republic@normal_png",
+                "Girl@suit@suit@suit@normal_png" //辅助使用
+            ],
+        ];
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
@@ -61,27 +95,17 @@ export default class HomeGamePlay extends PIXI.Container {
             $this: self,
             $alias: "IndoorBg_jpg"
         });
+        this.Common = new commonBg({
+            _this: self
+        });
         //返回按钮事件
-        this.BackButtonNormal = createdSprite({
-            $this: self,
-            $alias: "IndoorBackButtonNormal_png",
-            $interactive: true,
-            $buttonMode: true,
-            $x: 85,
-            $y: 41,
-        }).on("pointerdown", self.BackButtonNormalEvent = () => {
+        this.BackButtonNormal = this.Common.BackButtonNormal;
+        this.BackButtonNormal.on("pointerdown", self.BackButtonNormalEvent = () => {
             self.BackButtonClick.visible = true;
             self.BackButtonNormal.visible = false;
-        });
-        this.BackButtonClick = createdSprite({
-            $this: self,
-            $alias: "IndoorBackButtonClick_png",
-            $interactive: true,
-            $buttonMode: true,
-            $x: 85,
-            $y: 41,
-            $visible: false,
-        }).on("pointerup", self.BackButtonClickEvent = () => {
+        })
+        this.BackButtonClick = this.Common.BackButtonClick;
+        this.BackButtonClick.on("pointerup", self.BackButtonClickEvent = () => {
             self.BackButtonNormal.visible = true;
             self.BackButtonClick.visible = false;
             this.clearClass();
@@ -110,6 +134,10 @@ export default class HomeGamePlay extends PIXI.Container {
         }).on("pointerup", self.ResetProfileButtonClickEvent = () => {
             self.ResetProfileButtonNormal.visible = true;
             self.ResetProfileButtonClick.visible = false;
+            self.suitAll[0].forEach((item) => {
+                self.getSlotAndAttacetment(item); //把具体化
+                self.changeDress(); //换装
+            });
         });
         //穿越时空按钮
         this.CrossTimeButtonNoraml = createdSprite({
@@ -134,6 +162,8 @@ export default class HomeGamePlay extends PIXI.Container {
         }).on("pointerup", self.CrossTimeButtonClickEvent = () => {
             this.CrossTimeButtonNoraml.visible = true;
             this.CrossTimeButtonClick.visible = false;
+            this.clearClass();
+            SceneManager.run(new HomeTransform())
         });
 
         //内容衣柜
@@ -173,69 +203,34 @@ export default class HomeGamePlay extends PIXI.Container {
         this.RightDrawer.init();
         this.addChild(this.RightDrawer);
         //开始具体换装衣服
-        //console.log(this.classicon);
-
-
         this.RightDrawer.setEmitChangeCloth((clothDetailName) => {
             let self = this;
-            //console.log(clothDetailName)
             self.getSlotAndAttacetment(clothDetailName); //把具体化
-
-            //第一步 获取插槽
-            //第二步 获取插槽具体的位置
-            //第三步 获取插槽需要的附件
-            //第四步 把附件放到插槽上去...
-            //第一步 获取插槽
-
-            let SlotName = []; //插槽的名字
-            for (let item in this.classicon.girl.SlotAndAttachment) {
-                //console.log(item);
-                if (item.indexOf(self.ClothDetail.SlotName) != -1) {
-                    SlotName.push(item)
-                }
+            if (self.ClothDetail.Cloth == "suit") {
+                let num = Number(self.ClothDetail.AttacetmentName);
+                self.suitAll[num].forEach((item) => {
+                    self.getSlotAndAttacetment(item); //把具体化
+                    self.changeDress(); //换装
+                });
+            } else {
+                self.changeDress(); //换装
             }
-            //console.log(SlotName);
-
-            let SlotObjAll = []; //获取插槽对象
-            console.log(SlotName);
-            console.log("SlotName...")
-            SlotName.forEach((item) => {
-                let obj = {}
-                obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //插槽对象
-                this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {
-                    console.log(item1);
-                    console.log("item1...");
-                    console.log(self.ClothDetail.AttacetmentName)
-                    if (item1.indexOf(self.ClothDetail.AttacetmentName) != -1) {
-                        obj.AttacetmentName = item1;
-                        //console.log("内部条件执行...")
-                    }
-                }); //附件名字
-                //console.log(obj.AttacetmentName);
-                //console.log("obj.AttacetmentName...")
-                if (obj.AttacetmentName != undefined) {
-                    let SlotNum = obj.SlotObj.data.index; //插槽的位置
-                    console.log(obj.AttacetmentName)
-                    obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //附件的对象
-                    SlotObjAll.push(obj); //对象
-                }
-            });
-            console.log(SlotObjAll)
-            console.log("SlotObjAll...")
-            SlotObjAll.forEach((item) => {
-                item.SlotObj.setAttachment(item.AttachmentObj);
-            })
-
 
         });
         this.RightDrawer.setEmitClearCloth((clothDetailName) => {
-            //self.getSlotAndAttacetment(clothDetailName); //把具体化
-            // this.ClothDetail.AttacetmentName = this.ClothDetail.AttacetmentName.split("_")[0] + "_normal";
-            // let SlotObj = self.GirlSpine.skeleton.findSlot(self.ClothDetail.SlotName); //插槽对象
-            // let SlotNum = SlotObj.data.index; //插槽的位置
-            // let AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, self.ClothDetail.AttacetmentName);
-            // SlotObj.setAttachment(AttachmentObj);
-            // this.ClothDetail.AttacetmentName = 
+            let self = this;
+            //console.log(self.ClothDetail.Cloth);
+            //console.log("self.ClothDetail.Cloth...")
+            if (self.ClothDetail.Cloth == "suit") {
+                self.suitAll[0].forEach((item) => {
+                    self.getSlotAndAttacetment(item); //把具体化
+                    self.changeDress(); //换装
+                });
+            } else {
+                this.ClothDetail.AttacetmentName = "normal";
+                this.changeDress();
+            }
+
         })
 
 
@@ -246,6 +241,8 @@ export default class HomeGamePlay extends PIXI.Container {
     getSlotAndAttacetment(clothDetailName) {
         //这个参数是 名字
         //结果把各个具体化
+        //console.log(clothDetailName)
+        //console.log("clothDetailName...")
         let $nameDetail = clothDetailName.split("@");
         //console.log($nameDetail);
         this.ClothDetail.Gender = $nameDetail[0];
@@ -254,6 +251,50 @@ export default class HomeGamePlay extends PIXI.Container {
         this.ClothDetail.AttacetmentName = $nameDetail[3].split("_")[1];
         this.ClothDetail.End = $nameDetail[4];
         //console.log(this.ClothDetail);
+    }
+    changeDress() {
+        //第一步 获取插槽
+        //第二步 获取插槽具体的位置
+        //第三步 获取插槽需要的附件
+        //第四步 把附件放到插槽上去...
+        //第一步 获取插槽
+        let self = this;
+        let SlotName = []; //插槽的名字
+        let SlotObjAll = []; //获取插槽对象
+        for (let item in this.classicon.girl.SlotAndAttachment) {
+            //console.log(item);
+            if (item.indexOf(self.ClothDetail.SlotName) != -1) {
+                SlotName.push(item)
+            }
+        }
+        //console.log(SlotName);
+        SlotName.forEach((item) => {
+            let obj = {}
+            obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //插槽对象
+            this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {
+                if (item1.indexOf(self.ClothDetail.AttacetmentName) != -1) {
+                    obj.AttacetmentName = item1;
+                    //console.log("内部条件执行...")
+                }
+            }); //附件名字
+            //console.log(obj.AttacetmentName);
+            //console.log("obj.AttacetmentName...")
+            if (obj.AttacetmentName != undefined) {
+                let SlotNum = obj.SlotObj.data.index; //插槽的位置
+                obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //附件的对象
+                SlotObjAll.push(obj); //对象
+            }
+        });
+        // console.log(SlotObjAll);
+        //console.log("SlotObjAll...")
+        SlotObjAll.forEach((item) => {
+            if (item.AttachmentObj) {
+                item.SlotObj.setAttachment(item.AttachmentObj);
+            } else {
+                item.SlotObj.setAttachment(null);
+            }
+
+        })
     }
     clearClass() {
         let self = this;

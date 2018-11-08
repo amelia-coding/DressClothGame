@@ -98,7 +98,7 @@ class RightDrawer extends PIXI.Container {
                         //clothes.alpha = 1;
                         //item2.addChild(clothes); 改了这句话
                         item.addChild(clothes);
-                        console.log(self.clothesDrawerBtnArr[chothIndex] + "......@")
+                        //console.log(self.clothesDrawerBtnArr[chothIndex] + "......@")
                         if (self.clothesDrawerBtnArr[chothIndex] == undefined) {
                             item2.alpha = 0;
                         } else {

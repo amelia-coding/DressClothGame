@@ -172,4 +172,52 @@
 }, {
     "name": "All@all@all@all@normal_png",
     "url": "./img/ButtonImg/All@all@all@all@normal.png"
+}, {
+    "name": "classicon@suit@suit@suit@click_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@suit@suit@suit@click.png"
+}, {
+    "name": "classicon@suit@suit@suit@normal_png",
+    "url": "./img/DressAll/Girl/Classicon/classicon@suit@suit@suit@normal.png"
+}, {
+    "name": "classicon@suit@suit@suit@normal_png_s",
+    "url": "./img/DressAll/Girl/Classicon/classicon@suit@suit@suit@normal_s.png"
+}, {
+    "name": "Girl@suit@suit0@suit_0@click_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit0@suit0@click.png"
+}, {
+    "name": "Girl@suit@suit0@suit_0@normal_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit0@suit0@normal.png"
+}, {
+    "name": "Girl@suit@suit1@suit_1@click_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit1@suit1@click.png"
+}, {
+    "name": "Girl@suit@suit1@suit_1@normal_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit1@suit1@normal.png"
+}, {
+    "name": "Girl@suit@suit2@suit_2@click_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit2@suit2@click.png"
+}, {
+    "name": "Girl@suit@suit2@suit_2@normal_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit2@suit2@normal.png"
+}, {
+    "name": "Girl@suit@suit3@suit_3@click_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit3@suit3@click.png"
+}, {
+    "name": "Girl@suit@suit3@suit_3@normal_png",
+    "url": "./img/DressAll/Girl/Suits/Girl@suit@suit3@suit3@normal.png"
+}, {
+    "name": "transformBg_jpg",
+    "url": "./img/transformBg.jpg"
+}, {
+    "name": "Time_spine",
+    "url": "./img/spine/TimeSence/timesence.json"
+}, {
+    "name": "EgpytBg_jpg",
+    "url": "./img/Scene/EgpytBg.jpg"
+}, {
+    "name": "EuropeBg_jpg",
+    "url": "./img/Scene/EuropeBg.jpg"
+}, {
+    "name": "RepublicBg.jpg",
+    "url": "./img/Scene/RepublicBg.jpg"
 }]

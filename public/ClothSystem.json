@@ -8,25 +8,18 @@
         "SlotName": ["cloth", "props1", "shoesL1", "shoesL2", "shoesR1", "shoesR2"],
         "SlotAndAttachment": {
             "cloth": ["cloth_egypt", "cloth_europe", "cloth_normal", "cloth_republic"],
-            "hair1": ["hair_egypt1", "hair_europe1", "hair_normal", "hair_republic1"],
-            "hair2": ["hair_egypt2", "hair_europe2", "hair_norma2", "hair_republic2"],
-            "hat": ["hat_egypt", "hat_europe"],
-            "props1": ["props1_egypt", "props1_republic"],
-            "shoesL1": ["shoesL_egyptl", "shoesL_normal", "shoesL_republic"],
-            "shoesL2": ["shoesL_egypt2"],
-            "shoesR1": ["shoesR_egyptl", "shoesR_normal", "shoesR_republic"],
-            "shoesR2": ["shoesR_egypt2"]
-
-
+            "hair1": ["hair_egypt1", "hair_europe1", "hair_normal1", "hair_republic1"],
+            "hair2": ["hair_egypt2", "hair_europe2", "hair_normal2", "hair_republic2"],
+            "hat": ["hat_egypt", "hat_normal", "hat_europe"],
+            "props1": ["props1_egypt", "props1_normal", "props1_republic"],
+            "shoesL1": ["shoesL_egypt1", "shoesL_normal", "shoesL_republic"],
+            "shoesL2": ["shoesL_egypt2", "shoesL_normal"],
+            "shoesR1": ["shoesR_egypt1", "shoesR_normal", "shoesR_republic"],
+            "shoesR2": ["shoesR_egypt2", "shoesR_noraml"]
         },
-        "classIconArrClick": [
-            "classicon@cloth@cloth@cloth_normal@click_png",
-            "classicon@hair@hair@hair_normal@click_png",
-            "classicon@hat@hat@hat_normal@click_png",
-            "classicon@props@pros1@props1_normal@click_png",
-            "classicon@shoes@shoes@shoes_normal@click_png"
-        ],
+
         "classIconArr": [
+            "classicon@suit@suit@suit@normal_png",
             "classicon@cloth@cloth@cloth_normal@normal_png",
             "classicon@hair@hair@hair_normal@normal_png",
             "classicon@hat@hat@hat_normal@normal_png",
@@ -34,6 +27,13 @@
             "classicon@shoes@shoes@shoes_normal@normal_png"
         ],
         "particularClothes": {
+            "suit": [
+                "All@all@all@all@normal_png",
+                "Girl@suit@suit0@suit_0@normal_png",
+                "Girl@suit@suit1@suit_1@normal_png",
+                "Girl@suit@suit2@suit_2@normal_png",
+                "Girl@suit@suit3@suit_3@normal_png"
+            ],
             "cloth": [
                 "All@all@all@all@normal_png",
                 "Girl@dress@cloth@cloth_egypt@normal_png",
@@ -62,7 +62,21 @@
                 "Girl@shoes@shoes@shoes_republic@normal_png"
             ]
         },
+        "classIconArrClick": [
+            "classicon@suit@suit@suit@click_png",
+            "classicon@cloth@cloth@cloth_normal@click_png",
+            "classicon@hair@hair@hair_normal@click_png",
+            "classicon@hat@hat@hat_normal@click_png",
+            "classicon@props@pros1@props1_normal@click_png",
+            "classicon@shoes@shoes@shoes_normal@click_png"
+        ],
         "particularClothesClick": {
+            "suit": [
+                "Girl@suit@suit0@suit_0@click_png",
+                "Girl@suit@suit1@suit_1@click_png",
+                "Girl@suit@suit2@suit_2@click_png",
+                "Girl@suit@suit3@suit_3@click_png"
+            ],
             "cloth": [
                 "All@all@all@all@normal_png",
                 "Girl@dress@cloth@cloth_egypt@click_png",
