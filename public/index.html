@@ -23,20 +23,105 @@
 
     <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>css/preload.css">
     <script type="text/javascript" src="<%= BASE_URL %>js/preload.js"></script>
-    <script type="text/javascript" src="<%= BASE_URL %>js/vconsole.min.js"></script>
-    <script>
-        new VConsole();
-    </script>
 
 </head>
 
 <body>
     <noscript>
-      <strong>We're sorry but DressClothGame doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry but DressClothGame doesn't work properly without JavaScript enabled. Please enable it to
+            continue.</strong>
     </noscript>
     <div id="app"></div>
     <div class="container"></div>
     <!-- built files will be auto injected -->
+    <div class="gameLoadingContainer">
+        <!-- 删除这张图片 -->
+        <!-- <img class="bg" src="<%= BASE_URL %>img/bggaming.png" width="100%" height="100%"> -->
+    </div>
+    <!-- 网络缓慢弹窗效果图 -->
+    <div id="netbadbackground">
+        <div id="netbadpopupband" class="popupband">
+            <img src="./img/dialog/pop.png" width="100%" height="100%">
+            <div id="gobackbuttonblack" class="goback">
+                <img src="./img/NormalClickBack.png" width="100%" height="100%">
+            </div>
+            <div id="gobackbutton" class="goback">
+                <img src="./img/NormalBack.png" width="100%" height="100%">
+            </div>
+            <div id="loadingPosition">
+                <img class="ProBorde" src="./img/boot/RrogressBord1.png" alt="">
+                <img class="ProRig" src="./img/boot/RrogressRight.png" alt="">
+                <img id="ProMid" src="./img/boot/ProgressMiddle.png" alt="">
+                <img id="ProLef" src="./img/boot/ProgressLeft.png" alt="">
+                <!-- <img id="loading" src="<%= BASE_URL %>img/boot/loadingbarlight.png" alt=""> -->
+            </div>
+            <div id="LoadingText">
+                Loading...
+            </div>
+            <div class="text" id="LoadingTextContent">当前页面加载缓慢，请稍等或检查网络信号
+            </div>
+        </div>
+    </div>
+    <!-- 控制弹窗是否显示效果以及弹窗效果出现以后的方法 -->
+    <script>
+        function show() {
+            setTimeout(() => {
+                if (document.getElementById("netbadbackground")) {
+                    document.getElementById("netbadbackground").style.visibility = "visible"; //背景图片
+                    document.getElementById("LoadingTextContent").style.visibility = "visible"; //背景文字
+                    document.getElementById("gobackbutton").style.visibility = "visible"; //显示按钮
+                    document.getElementById(
+                        "gobackbutton"
+                    ).onmousedown = gobackbuttonMouseDown_handler;
+                    document.getElementById(
+                        "gobackbutton"
+                    ).onmouseup = gobackbuttonMouseDown_Up;
+                    document.getElementById(
+                        "gobackbutton"
+                    ).ontouchstart = gobackbuttonMouseDown_handler;
+                    document.getElementById(
+                        "gobackbutton"
+                    ).ontouchend = gobackbuttonMouseDown_Up;
+                    document.getElementById(
+                        "gobackbutton"
+                    ).onclick = gobackbuttonMouseClick_handler;
+                    return;
+                };
+                console.log("没有东西啦");
+            }, 5000);
+        };
+        show();
+
+        function gobackbuttonMouseDown_handler() {
+            document.getElementById("gobackbutton").style.opacity = 0;
+            document.getElementById("gobackbuttonblack").style.opacity = 1;
+        }
+
+        function gobackbuttonMouseDown_Up() {
+            document.getElementById("gobackbutton").style.opacity = 1;
+            document.getElementById("gobackbuttonblack").style.opacity = 0;
+        }
+
+        function gobackbuttonMouseClick_handler() {
+            document.getElementById("netbadbackground").style.visibility = "hidden";
+            document.getElementById("gobackbutton").onmousedown = null;
+            document.getElementById("gobackbutton").onmouseup = null;
+            document.getElementById("gobackbutton").ontouchstart = null;
+            document.getElementById("gobackbutton").ontouchend = null;
+            document.getElementById("gobackbutton").onclick = null;
+            //返回主目录;
+            window.parent.postMessage({
+                "type": "exitGame",
+                "game": 5,
+            }, "*");
+        }
+    </script>
+    <!-- 这个是vscoder信息 -->
+    <script type="text/javascript" src="<%= BASE_URL %>js/vconsole.min.js"></script>
+    <script>
+        new VConsole();
+    </script>
+
 </body>
 
 </html>

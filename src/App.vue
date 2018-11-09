@@ -21,7 +21,12 @@ var CanvasApp;
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      baseUrl: process.env.BASE_URL
+    };
+  },
+  beforeCreate() {
+    PIXI.utils.skipHello();
   },
   computed: {},
   mounted() {
@@ -55,6 +60,19 @@ export default {
     },
     async gameStart() {
       await this.getPromise_resource();
+      //这是网路缓慢弹窗事件
+      document
+        .getElementsByClassName("gameLoadingContainer")[0]
+        .parentNode.removeChild(
+          document.getElementsByClassName("gameLoadingContainer")[0]
+        );
+
+      if (document.getElementById("netbadbackground")) {
+        document
+          .getElementById("netbadbackground")
+          .parentNode.removeChild(document.getElementById("netbadbackground"));
+      }
+      console.log("游戏资源加载完毕");
       //console.log("游戏资源加载完毕...");
     },
     getPromise_resource() {
@@ -69,9 +87,19 @@ export default {
         });
         //开始加载游戏的全部资源
         self.axios.get("./GameResource.json").then(response => {
-          PIXI.loader.add(response.data).load(() => {
-            resolve();
-          });
+          PIXI.loader
+            .add(response.data)
+            .on("progress", loader => {
+              if (document.getElementById("loadingPosition")) {
+                document.getElementById("ProMid").style.width =
+                  loader.progress * 0.0495 + 0.3 + "rem";
+                document.getElementById("ProLef").style.left =
+                  loader.progress * 2.472 + 48.8 + "%";
+              }
+            })
+            .load(() => {
+              resolve();
+            });
         });
       });
     }
@@ -80,7 +108,7 @@ export default {
 </script>
 
 <style >
-#app {
+/* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -98,7 +126,7 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 #app {
   position: absolute;
   width: 19.2rem;
@@ -106,13 +134,12 @@ export default {
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  background: green;
 }
 html,
 div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 </style>
