@@ -37,7 +37,7 @@ export default class HomePages extends PIXI.Container {
     }
     addedHomePageStage() {
         let self = this;
-        console.log("这个是首页内容开始...");
+        //console.log("这个是首页内容开始...");
         //小背景图
         createdSprite({
             $this: self,
@@ -116,7 +116,7 @@ export default class HomePages extends PIXI.Container {
             //开始滑块事件
         this._Gb.timeln = new TimelineMax({
             onComplete: () => {
-                console.log("发生了timeIn事件...")
+                //console.log("发生了timeIn事件...")
                 mySwiper.updateAll();
                 mySwiper.slideColorAlpha = 0;
                 mySwiper.slideWidth = 800;
@@ -178,7 +178,7 @@ export default class HomePages extends PIXI.Container {
             $interactive: true,
             $buttonMode: true,
         }).on("pointerdown", self.ButtonNormalEvent = () => {
-            console.log("这个事件执行了down...");
+            //console.log("这个事件执行了down...");
             self.ButtonNormal.visible = false;
             self.ButtonClick.visible = true;
         });
@@ -191,7 +191,7 @@ export default class HomePages extends PIXI.Container {
             $interactive: true,
             $buttonMode: true,
         }).on("pointerup", self.ButtonClickEvent = () => {
-            console.log("点击按钮事件发生了...");
+            //console.log("点击按钮事件发生了...");
             self.ButtonNormal.visible = true;
             self.ButtonClick.visible = false;
         });
@@ -200,7 +200,7 @@ export default class HomePages extends PIXI.Container {
 
     }
     clearClass() {
-        console.log("clearClass事件发生了");
+        //console.log("clearClass事件发生了");
         //清空定时器
         clearTimeout(this.DelayTime);
         let self = this;

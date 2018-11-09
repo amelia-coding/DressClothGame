@@ -15,8 +15,7 @@ import {
     SceneManager
 } from "../lib/EasyPIXI";
 import HomeGamePlay from "./Home1GamePlay.js"
-import Home3Scene from "./Home3Scene.js"
-export default class HomeTransform extends PIXI.Container {
+export default class Home3Scene extends PIXI.Container {
     constructor() {
         super();
         this.Common = null;
@@ -25,11 +24,10 @@ export default class HomeTransform extends PIXI.Container {
         this.BackButtonClick = null;
         this.BackButtonClickEvent = null;
         this.transformBg = null;
-        this._Gb = { //滑块事件
-            timeln: null,
-            tween1: null,
-            tween2: null
-        };
+        this.PhotoButtonClick = null;
+        this.PhotoButtonClickEvent = null;
+        this.PhotoButtonNormal = null;
+        this.PhotoButtonNormalEvent = null;
         this.Scene = [
             "EgpytBg_jpg",
             "EuropeBg_jpg",
@@ -60,35 +58,102 @@ export default class HomeTransform extends PIXI.Container {
         })()
         //接受参数
         this.classicon = Garbage.getGarBage("classicon");
+        //测试使用
+        //this.AllSlotName = [];
+        //正式使用
+        //获取动画具体要穿的衣服
         this.AllSlotName = Garbage.getGarBage("allSlotName");
-        this.transformBg = createdSprite({
-            $this: self,
-            $alias: "transformBg_jpg"
-        });
-        this.TimeSpine = createdSpine({
+        //获取背景图
+        this.SceneNum = Garbage.getGarBage("ScenePosition");
+        this.Scene.forEach((item) => {
+            let itemObj = createdSprite({
                 $this: self,
-                $x: 960,
-                $y: 540,
-                $alias: "Time_spine",
-                $animation0Name: "animation"
-            })
-            //this.TimeSpine.scale.set(0.5)
+                $alias: item,
+                $visible: false,
+            });
+            self.SceneArr.push(itemObj);
+        });
+        self.SceneArr[this.SceneNum].visible = true;
+        //背景图结束
         this.Common = new commonBg({
             _this: self
         });
         //返回按钮事件
         this.BackButtonNormal = this.Common.BackButtonNormal;
+        this.BackButtonNormal.x = 33;
         this.BackButtonNormal.on("pointerdown", self.BackButtonNormalEvent = () => {
             self.BackButtonClick.visible = true;
             self.BackButtonNormal.visible = false;
         })
         this.BackButtonClick = this.Common.BackButtonClick;
+        this.BackButtonClick.x = 33;
         this.BackButtonClick.on("pointerup", self.BackButtonClickEvent = () => {
             self.BackButtonNormal.visible = true;
             self.BackButtonClick.visible = false;
             this.clearClass();
             SceneManager.run(new HomeGamePlay())
         });
+        //照相机按钮
+        this.PhotoButtonNormal = createdSprite({
+            $this: self,
+            $alias: "PhotoButtonNormal_png",
+            $x: 230,
+            $y: 33,
+            $interactive: true,
+            $buttonMode: true
+        }).on("pointerdown", this.PhotoButtonNormalEvent = () => {
+            this.PhotoButtonNormal.visible = false;
+            this.PhotoButtonClick.visible = true;
+        });
+        this.PhotoButtonClick = createdSprite({
+            $this: self,
+            $alias: "PhotoButtonClick_png",
+            $x: 230,
+            $y: 33,
+            $interactive: true,
+            $buttonMode: true,
+            $visible: false
+        }).on("pointerup", this.PhotoButtonClickEvent = () => {
+            this.PhotoButtonNormal.visible = true;
+            this.PhotoButtonClick.visible = false
+        });
+        //文字板块事件
+        this.TextBorad = createdSprite({
+            $this: self,
+            $alias: "TextBorad_png",
+            $x: 40,
+            $y: 199
+        });
+        //样式...
+        this.TextStyle = new PIXI.TextStyle({
+            fontSize: 35,
+            fill: "#788C50"
+        });
+        this.TextName = new PIXI.Text("欢\n迎\n黄\n晓\n明\n明\n华\n再\n同\n学\n穿\n越\n到\n国\n民\n。", this.TextStyle);
+        this.TextName.x = 380;
+        this.TextName.y = 300;
+        this.addChild(this.TextName);
+        let Text = [
+            "继\n民\n国\n时\n期\n的\n“\n五\n四\n新\n文\n化\n运\n动\n”\n后\n，\n白",
+            "话\n文\n代\n替\n文\n言\n文\n，\n揭\n露\n和\n鞭\n挞\n封\n建\n蒙\n昧",
+            "成\n为\n中\n国\n文\n艺\n最\n为\n重\n要\n的\n主\n题\n之\n一\n。\n在\n此",
+            "期\n鲁\n迅\n、\n巴\n金\n、\n茅\n盾\n、\n郭\n沫\n若\n、\n老\n舍\n、\n曹",
+            "禺\n等"
+        ]
+        this.TextStyle1 = new PIXI.TextStyle({
+            fontSize: 35,
+            fill: "#704939"
+        });
+        this.TextSpriteArr = [];
+        Text.forEach((item, index) => {
+            let TextSprite = new PIXI.Text(item, this.TextStyle1);
+            TextSprite.x = 320 - index * 60;
+            TextSprite.y = 300;
+            this.TextSpriteArr.push(TextSprite);
+            this.addChild(TextSprite);
+        })
+
+        //样式2...
         //动画事件
         this.GirlSpine = createdSpine({
             $this: self,
@@ -108,80 +173,7 @@ export default class HomeTransform extends PIXI.Container {
             }
 
         });
-        //滑块事件
-        var mySwiper = new PixiSlider();
-        mySwiper.slideColorAlpha = 0.5;
-        mySwiper.slideWidth = 1850; //总的长度
-        mySwiper.slideHeight = 300;
-        mySwiper.swiperWidth = 1850;
-        mySwiper.swiperHeight = 300;
-        mySwiper.x = 100;
-        mySwiper.y = 623;
-        mySwiper.slides = 2;
-        mySwiper.slideOffset = 200;
-        //mySwiper.alpha = 0.5;
-        mySwiper.smoothingMode = false;
-        mySwiper.init();
-        this.addChild(mySwiper);
-        // "EgpytBg_jpg" "EuropeBg_jpg" "RepublicBg.jpg"
-        this.Scene.forEach((item, index) => {
-            let itemEvent;
-            let itemObj = createdSprite({
-                $this: self,
-                $alias: item,
-                $scale: 0.3,
-                $interactive: true,
-                $buttonMode: true,
-                $addChild: false
-            });
-            //console.log(itemObj.height)
-            itemObj.pivot.y = itemObj.height / 2;
-            itemObj.pivot.x = itemObj.width / 2;
-            itemObj.on("pointertap", itemEvent = () => {
-                itemObj.scale.set(0.4);
-                //跳转
-                Garbage.clearGarBage("ScenePosition");
-                Garbage.setGarBage("ScenePosition", index);
-                this.clearClass();
-                SceneManager.run(new Home3Scene());
-            })
-            self.SceneEventArr.push(itemEvent);
-            self.SceneArr.push(itemObj);
-        })
-        this._Gb.timeln = new TimelineMax({
-            onComplete: () => {
-                //console.log("发生了timeIn事件...")
-                mySwiper.updateAll();
-                mySwiper.slideColorAlpha = 0;
-                mySwiper.slideWidth = 500;
-                mySwiper.slideHeight = 800;
-                mySwiper.swiperWidth = 1800; //总长
-                mySwiper.swiperHeight = 800;
-                mySwiper.x = 100;
-                mySwiper.y = 623;
-                mySwiper.slides = 3;
-                mySwiper.slideOffset = 200;
-                mySwiper.smoothingMode = false;
-                mySwiper.init();
-                mySwiper.setCallBackPointerUp((data) => {
-                    if (data.movedOffset < 0) {
-                        if (mySwiper.realIndex < mySwiper.slides - 1) {
-                            mySwiper.slideTo(mySwiper.realIndex + 1)
-                        }
-                    } else if (data.movedOffset >= 0) {
-                        if (mySwiper.realIndex > 0) {
-                            mySwiper.slideTo(mySwiper.realIndex - 1)
-                        }
-                    } else {
-                        mySwiper.slideTo(mySwiper.realIndex)
-                    }
-                });
-                self.SceneArr.forEach((item, index) => {
-                    mySwiper.slidesArr[index].addChild(item);
-                })
-            }
-        });
-        //滑块事件结束
+
 
     }
     getSlotAndAttacetment(clothDetailName) {
@@ -257,6 +249,13 @@ export default class HomeTransform extends PIXI.Container {
         this.BackButtonNormalEvent = null;
         this.BackButtonNormal = null;
         this.BackButtonClick = null;
+        //移除照相机事件
+        this.PhotoButtonClick.off("pointerup", this.PhotoButtonClickEvent);
+        this.PhotoButtonClickEvent = null;
+        this.PhotoButtonClick = null;
+        this.PhotoButtonNormal.off("pointerdown", this.PhotoButtonNormalEvent);
+        this.PhotoButtonNormalEvent = null;
+        this.PhotoButtonNormal = null;
         //移除背景图
         this.commonBg = null;
         this.transformBg = null;

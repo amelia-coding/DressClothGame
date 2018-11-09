@@ -16,6 +16,7 @@ import { SceneManager, Garbage } from "./lib/EasyPIXI.js";
 import HomePages from "./components/Home0Pages.js";
 import HomeGamePlay from "./components/Home1GamePlay.js";
 import HomeTransform from "./components/Home2Transform.js";
+import Home3Scene from "./components/Home3Scene.js";
 var CanvasApp;
 export default {
   name: "App",
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     createCanvasApp() {
-      console.log("游戏开始执行...");
+      //console.log("游戏开始执行...");
       let self = this;
       //设置基本样式开始
       CanvasApp = new PIXI.Application({
@@ -44,24 +45,25 @@ export default {
       SceneManager.App = CanvasApp;
       SceneManager.stage = CanvasApp.stage;
       this.gameStart().then(() => {
-        console.log("开始加载首页...");
+        //console.log("开始加载首页...");
         //测试使用
-        //SceneManager.run(new HomePages());
+        SceneManager.run(new HomePages());
         //SceneManager.run(new HomeGamePlay());
-        SceneManager.run(new HomeTransform());
+        //SceneManager.run(new HomeTransform());
+        //SceneManager.run(new Home3Scene());
       });
     },
     async gameStart() {
       await this.getPromise_resource();
-      console.log("游戏资源加载完毕...");
+      //console.log("游戏资源加载完毕...");
     },
     getPromise_resource() {
       return new Promise(resolve => {
         //获取加载的
-        console.log("开始加载游戏资源");
+        //console.log("开始加载游戏资源");
         //加载换装系统
         self.axios.get("./ClothSystem.json").then(response => {
-          console.log(response);
+          //console.log(response);
           Garbage.clearGarBage("classicon");
           Garbage.setGarBage("classicon", response.data);
         });

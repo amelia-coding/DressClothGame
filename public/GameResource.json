@@ -220,4 +220,13 @@
 }, {
     "name": "RepublicBg.jpg",
     "url": "./img/Scene/RepublicBg.jpg"
+}, {
+    "name": "PhotoButtonNormal_png",
+    "url": "./img/ButtonImg/PhotoButtonNormal.png"
+}, {
+    "name": "PhotoButtonClick_png",
+    "url": "./img/ButtonImg/PhotoButtonClick.png"
+}, {
+    "name": "TextBorad_png",
+    "url": "./img/ButtonImg/TextBorad.png"
 }]
