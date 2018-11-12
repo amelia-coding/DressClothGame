@@ -35,6 +35,7 @@ export default class HomeTransform extends PIXI.Container {
             "EuropeBg_jpg",
             "RepublicBg.jpg"
         ];
+        this.Gender = null;
         this.SceneArr = [];
         this.SceneEventArr = [];
         this.GirlSpine = null;
@@ -57,8 +58,10 @@ export default class HomeTransform extends PIXI.Container {
         (() => {
             this.SceneArr = [];
             this.SceneEventArr = [];
+            this.Gender = null;
         })()
         //接受参数
+        this.Gender = Garbage.getGarBage("Gender");
         this.classicon = Garbage.getGarBage("classicon");
         this.AllSlotName = Garbage.getGarBage("allSlotName");
         this.transformBg = createdSprite({
@@ -96,9 +99,31 @@ export default class HomeTransform extends PIXI.Container {
             $x: 950,
             $y: 500,
             $buttonMode: true,
+            $visible: false,
             $animation0Name: "normal",
             $addChild: true
         });
+        this.BoySpine = createdSpine({
+            $this: self,
+            $alias: "Boy_spine",
+            $x: 950,
+            $y: 700,
+            $buttonMode: true,
+            $visible: false,
+            $animation0Name: "normal",
+            $addChild: true
+        });
+        if (this.Gender == "girl") {
+            this.GirlSpine.visible = true;
+            this.BoySpine.visible = false;
+            this.SelectSpine = null;
+            this.SelectSpine = this.GirlSpine;
+        } else {
+            this.GirlSpine.visible = false;
+            this.BoySpine.visible = true;
+            this.SelectSpine = null;
+            this.SelectSpine = this.BoySpine;
+        }
         //console.log(this.AllSlotName);
         //console.log("this.allslotNAME...")
         this.AllSlotName.forEach((item) => {
@@ -213,17 +238,24 @@ export default class HomeTransform extends PIXI.Container {
         let self = this;
         let SlotName = []; //插槽的名字
         let SlotObjAll = []; //获取插槽对象
-        for (let item in this.classicon.girl.SlotAndAttachment) {
-            ////console.log(item);
+        //for (let item in this.classicon.girl.SlotAndAttachment) {//女孩
+        //for (let item in this.classicon.boy.SlotAndAttachment) { //男孩子
+        for (let item in this.classicon[self.Gender].SlotAndAttachment) {
             if (item.indexOf(self.ClothDetail.SlotName) != -1) {
                 SlotName.push(item)
             }
         }
         ////console.log(SlotName);
         SlotName.forEach((item) => {
-            let obj = {}
-            obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //插槽对象
-            this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {
+            let obj = {};
+            self.takeoffSingleCloth(item);
+            //obj.SlotObj = self.BoySpine.skeleton.findSlot(item) //男孩插槽对象
+            //obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //女孩插槽对象
+            obj.SlotObj = self.SelectSpine.skeleton.findSlot(item)
+
+            //this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {//女孩子
+            //this.classicon.boy.SlotAndAttachment[item].forEach((item1) => { //男孩子
+            this.classicon[self.Gender].SlotAndAttachment[item].forEach((item1) => {
                 if (item1.indexOf(self.ClothDetail.AttacetmentName) != -1) {
                     obj.AttacetmentName = item1;
                     ////console.log("内部条件执行...")
@@ -233,7 +265,9 @@ export default class HomeTransform extends PIXI.Container {
             ////console.log("obj.AttacetmentName...")
             if (obj.AttacetmentName != undefined) {
                 let SlotNum = obj.SlotObj.data.index; //插槽的位置
-                obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //附件的对象
+                //obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //女孩附件的对象
+                // obj.AttachmentObj = self.BoySpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //男孩子附件的对象
+                obj.AttachmentObj = self.SelectSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName);
                 SlotObjAll.push(obj); //对象
             }
         });
@@ -248,6 +282,12 @@ export default class HomeTransform extends PIXI.Container {
 
         })
     }
+    takeoffSingleCloth($slotName) {
+        //this.GirlSpine.skeleton.findSlot($slotName).setAttachment(null);//女孩
+        //this.BoySpine.skeleton.findSlot($slotName).setAttachment(null); //男孩
+        this.SelectSpine.skeleton.findSlot($slotName).setAttachment(null)
+    }
+
     clearClass() {
         let self = this;
         //返回按钮事件

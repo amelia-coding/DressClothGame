@@ -87,7 +87,7 @@ export default class HomePages extends PIXI.Container {
             mySwiper.removeChildren();
             mySwiper.parent.removeChildren();
             Garbage.clearGarBage("Gender");
-            Garbage.setGarBage("Gender", "girl");
+            Garbage.setGarBage("Gender", "girl"); //女孩发送数据
             self.clearClass();
             SceneManager.run(new HomeGamePlay());
         });
@@ -104,7 +104,7 @@ export default class HomePages extends PIXI.Container {
             mySwiper.removeChildren();
             mySwiper.parent.removeChildren();
             Garbage.clearGarBage("Gender");
-            Garbage.setGarBage("Gender", "boy");
+            Garbage.setGarBage("Gender", "boy"); //男孩发送数据
             self.clearClass();
             SceneManager.run(new HomeGamePlay());
         });
@@ -148,7 +148,7 @@ export default class HomePages extends PIXI.Container {
         });
         //开启的时候左右移动
         this._Gb.tween1 = TweenMax.to(mySwiper, 2, {
-            x: -100,
+            x: -180,
             ease: Back.easeOut
         });
         this._Gb.tween2 = TweenMax.to(mySwiper, 1, {
