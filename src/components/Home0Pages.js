@@ -3,7 +3,10 @@ import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
 import {
     createdSprite,
-    createdSpine
+    createdSpine,
+    createdText,
+    createdStyle,
+    DialogCommon
 } from "./Common"
 import {
     TimelineMax
@@ -33,6 +36,16 @@ export default class HomePages extends PIXI.Container {
             tween2: null
         };
         this.DelayTime = null;
+        this.DialogContainer = null;
+        this.graphics = null;
+        this.DialogSaveButtonNormal = null;
+        this.DialogSaveButtonNormalEvent = null;
+        this.DialogSaveButtonClick = null;
+        this.DialogSaveButtonClickEvent = null;
+        this.DialogNoSaveButtonNormal = null;
+        this.DialogNoSaveButtonNormalEvent = null;
+        this.DialogNoSaveButtonClick = null;
+        this.DialogNoSaveButtonClickEvent = null;
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
@@ -109,11 +122,11 @@ export default class HomePages extends PIXI.Container {
             SceneManager.run(new HomeGamePlay());
         });
         //设置延时解决可能出现的bug
-        this.DelayTime = setTimeout(() => {
-                this.GirlSpine.interactive = true;
-                this.BoySpine.interactive = true;
-            }, 3000)
-            //开始滑块事件
+        // this.DelayTime = setTimeout(() => {
+        //     this.GirlSpine.interactive = true;
+        //     this.BoySpine.interactive = true;
+        // }, 3000);
+        //开始滑块事件
         this._Gb.timeln = new TimelineMax({
             onComplete: () => {
                 //console.log("发生了timeIn事件...")
@@ -195,9 +208,105 @@ export default class HomePages extends PIXI.Container {
             self.ButtonNormal.visible = true;
             self.ButtonClick.visible = false;
         });
+        //弹窗事件
+        //公共弹窗事件
+        this.DialogCommon = new DialogCommon();
+        //this.addChild(this.DialogCommon.DialogContainer); 有时间限制
+        this.DialogCommon.DialogGoodButtonClick.on("pointerup", this.DialogCommonClickEvent = () => {
+            this.DialogCommon.DialogGoodButtonNormal.visible = true;
+            this.DialogCommon.DialogGoodButtonClick.visible = false;
+            window.parent.postMessage({
+                "type": "exitGame",
+                "game": 8, //修改
+            }, "*")
+        });
+        // this.DialogCommon.DialogGoodButtonClickEvent = () => {
+        //         console.log("...........@")
+        //     };
+        //this.DialogCommon.DialogGoodButtonClickEvent(fn);
+
+        this.DialogContainer = new PIXI.Container();
+        //this.addChild(this.DialogContainer);
+        this.graphics = new PIXI.Graphics();
+        this.graphics.beginFill(0x0000).drawRect(0, 0, 1920, 1080).endFill();
+        this.graphics.alpha = 0.7;
+        this.DialogContainer.addChild(this.graphics);
+        this.DialogBg = createdSprite({
+            $this: this.DialogContainer,
+            $alias: 'Dialog_jpg',
+            $x: 391,
+            $y: 210,
+
+        });
+        this.DialogTextStyle = createdStyle()
+        this.DialogText = createdText({
+            $this: this.DialogContainer,
+            $x: 780,
+            $y: 372,
+            $text: "是否继续之前的装扮",
+            $style: this.DialogTextStyle
+        });
+        //重新开始按钮按钮
+        this.DialogSaveButtonNormal = createdSprite({
+            $this: this.DialogContainer,
+            $alias: "RebeginButtonNormal_png",
+            $x: 1017,
+            $y: 644,
+            $interactive: true,
+            $buttonMode: true
+        }).on("pointerdown", this.DialogSaveButtonClickEvent = () => {
+            this.DialogSaveButtonNormal.visible = false;
+            this.DialogSaveButtonClick.visible = true;
+        });
+        this.DialogSaveButtonClick = createdSprite({
+            $this: this.DialogContainer,
+            $alias: "RebeginButtonClick_png",
+            $x: 1017,
+            $y: 644,
+            $interactive: true,
+            $buttonMode: true,
+            $visible: false
+        }).on("pointerup", this.DialogSaveButtonClickEvent = () => {
+            this.DialogSaveButtonNormal.visible = true;
+            this.DialogSaveButtonClick.visible = false;
+            this.DialogEffect(true);
+            this.removeChild(this.DialogContainer);
+        });
+        //继续装扮按钮
+        this.DialogNoSaveButtonNormal = createdSprite({
+            $this: this.DialogContainer,
+            $alias: "ContinueDressButtonNormal_png",
+            $x: 585,
+            $y: 644,
+            $interactive: true,
+            $buttonMode: true
+        }).on("pointerdown", this.DialogNoSaveButtonNormalEvent = () => {
+            this.DialogNoSaveButtonNormal.visible = false;
+            this.DialogNoSaveButtonClick.visible = true;
+        });
+        this.DialogNoSaveButtonClick = createdSprite({
+            $this: this.DialogContainer,
+            $alias: "ContinueDressButtonClick_png",
+            $x: 585,
+            $y: 644,
+            $interactive: true,
+            $buttonMode: true,
+            $visible: false
+        }).on("pointerup", this.DialogNoSaveButtonClickEvent = () => {
+            this.DialogNoSaveButtonNormal.visible = true;
+            this.DialogNoSaveButtonClick.visible = false;
+            this.DialogEffect(true);
+            this.removeChild(this.DialogContainer);
+        });
+        this.DialogEffect();
 
 
-
+    }
+    DialogEffect(control = false) {
+        this.ButtonNormal.interactive = control;
+        this.ButtonClick.interactive = control;
+        this.BoySpine.interactive = control;
+        this.GirlSpine.interactive = control;
     }
     clearClass() {
         //console.log("clearClass事件发生了");
@@ -213,6 +322,23 @@ export default class HomePages extends PIXI.Container {
 
         this.GirlSpine = null;
         this.BoySpine = null;
+        //弹窗事件
+        this.DialogSaveButtonNormal.off("pointerdown", this.DialogSaveButtonNormalEvent);
+        this.DialogSaveButtonNormalEvent = null;
+        this.DialogSaveButtonNormal = null;
+        this.DialogSaveButtonClick.off("pointerup", this.DialogSaveButtonClickEvent);
+        this.DialogSaveButtonClickEvent = null;
+        this.DialogSaveButtonClick = null;
+        this.DialogNoSaveButtonNormal.off("pointerdown", this.DialogNoSaveButtonClickEvent);
+        this.DialogNoSaveButtonClickEvent = null;
+        this.DialogNoSaveButtonNormal = null;
+        this.DialogNoSaveButtonClick.off("pointerup", this.DialogNoSaveButtonClickEvent);
+        this.DialogNoSaveButtonClickEvent = null;
+        this.DialogNoSaveButtonClick = null;
+        this.graphics = null;
+        this.DialogContainer.removeChildren();
+        this.parent.removeChildren();
+        this.DialogContainer = null;
         //清空滑块事件
 
         //转动事件清空
@@ -223,7 +349,7 @@ export default class HomePages extends PIXI.Container {
 
         //清空整体画布
         this.off("added", self.addedHomePageStage);
-        this.parent.removeChildren();
+        //this.parent.removeChildren();
         // this = null;
     }
 }

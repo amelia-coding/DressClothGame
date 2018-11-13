@@ -250,8 +250,8 @@ class RightDrawer extends PIXI.Container {
                 this.clothesDrawer.addChild(this.clothesDrawer_slider); //添加滑块
                 this.addChild(this.clothesDrawer); //添加具体的盒子内的衣服
 
-                console.log(this.getChildIndex(this.clothesDrawer)); //3
-                console.log(this.getChildIndex(this.classDrawer)); //2
+                // console.log(this.getChildIndex(this.clothesDrawer)); //3
+                // console.log(this.getChildIndex(this.classDrawer)); //2
                 this.setChildIndex(this.classDrawer, 3)
                 this.setChildIndex(this.bg, 2)
                 this.clothesDrawer.x = 250;

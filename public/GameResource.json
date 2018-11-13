@@ -418,4 +418,37 @@
 }, {
     "name": "Boy@trousers@trousers@trousers_republic@noraml_png",
     "url": "./img/DressAll/Boy/Trousers/Boy@trousers@trousers@trousers_republic@noraml.png"
+}, {
+    "name": "Dialog_jpg",
+    "url": "./img/ButtonImg/Dialog.jpg"
+}, {
+    "name": "DialogSaveButtonNoraml_png",
+    "url": "./img/ButtonImg/DialogSaveButtonNoraml.png"
+}, {
+    "name": "DialogSaveButtonClick_png",
+    "url": "./img/ButtonImg/DialogSaveButtonClick.png"
+}, {
+    "name": "DialogNoSaveButtonClick_png",
+    "url": "./img/ButtonImg/DialogNoSaveButtonClick.png"
+}, {
+    "name": "DialogNoSaveButtonNoraml_png",
+    "url": "./img/ButtonImg/DialogNoSaveButtonNoraml.png"
+}, {
+    "name": "RebeginButtonNormal_png",
+    "url": "./img/ButtonImg/RebeginButtonNormal.png"
+}, {
+    "name": "RebeginButtonClick_png",
+    "url": "./img/ButtonImg/RebeginButtonClick.png"
+}, {
+    "name": "ContinueDressButtonNormal_png",
+    "url": "./img/ButtonImg/ContinueDressButtonNormal.png"
+}, {
+    "name": "ContinueDressButtonClick_png",
+    "url": "./img/ButtonImg/ContinueDressButtonClick.png"
+}, {
+    "name": "DialogGoodNormal_png",
+    "url": "./img/ButtonImg/DialogGoodNormal.png"
+}, {
+    "name": "DialogGoodClick_png",
+    "url": "./img/ButtonImg/DialogGoodClick.png"
 }]

@@ -5,7 +5,10 @@ import RightDrawer from "../lib/RightDrawer.js";
 import {
     createdSprite,
     createdSpine,
-    commonBg
+    commonBg,
+    takeoffSingleCloth,
+    getSlotAndAttacetment,
+    changeDress
 } from "./Common";
 import {
     TimelineMax
@@ -209,85 +212,9 @@ export default class HomeTransform extends PIXI.Container {
         //滑块事件结束
 
     }
-    getSlotAndAttacetment(clothDetailName) {
-        //这个参数是 名字
-        //结果把各个具体化
-        //console.log(clothDetailName)
-        //console.log("clothDetailName...")
-        let $nameDetail = clothDetailName.split("@");
-        ////console.log($nameDetail);
-        this.ClothDetail.Gender = $nameDetail[0];
-        this.ClothDetail.Cloth = $nameDetail[1];
-        this.ClothDetail.SlotName = $nameDetail[2];
-        this.ClothDetail.AttacetmentName = $nameDetail[3].split("_")[1];
-        this.ClothDetail.End = $nameDetail[4];
-        //this.allSlotName[$nameDetail[2]] = clothDetailName;
-    }
-    changeDress() {
-        // //console.log(this.ClothDetail)
-        // //console.log("this.ClothDetail...")
-
-        //第一步 获取插槽
-        //第二步 获取插槽具体的位置
-        //第三步 获取插槽需要的附件
-        //第四步 把附件放到插槽上去...
-        //第一步 获取插槽
-        // this.allSlotName[this.ClothDetail.SlotName] = clothDetailName;
-        // //console.log(this.allSlotName);
-        ////console.log("this.allSlotName...")
-        let self = this;
-        let SlotName = []; //插槽的名字
-        let SlotObjAll = []; //获取插槽对象
-        //for (let item in this.classicon.girl.SlotAndAttachment) {//女孩
-        //for (let item in this.classicon.boy.SlotAndAttachment) { //男孩子
-        for (let item in this.classicon[self.Gender].SlotAndAttachment) {
-            if (item.indexOf(self.ClothDetail.SlotName) != -1) {
-                SlotName.push(item)
-            }
-        }
-        ////console.log(SlotName);
-        SlotName.forEach((item) => {
-            let obj = {};
-            self.takeoffSingleCloth(item);
-            //obj.SlotObj = self.BoySpine.skeleton.findSlot(item) //男孩插槽对象
-            //obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //女孩插槽对象
-            obj.SlotObj = self.SelectSpine.skeleton.findSlot(item)
-
-            //this.classicon.girl.SlotAndAttachment[item].forEach((item1) => {//女孩子
-            //this.classicon.boy.SlotAndAttachment[item].forEach((item1) => { //男孩子
-            this.classicon[self.Gender].SlotAndAttachment[item].forEach((item1) => {
-                if (item1.indexOf(self.ClothDetail.AttacetmentName) != -1) {
-                    obj.AttacetmentName = item1;
-                    ////console.log("内部条件执行...")
-                }
-            }); //附件名字
-            ////console.log(obj.AttacetmentName);
-            ////console.log("obj.AttacetmentName...")
-            if (obj.AttacetmentName != undefined) {
-                let SlotNum = obj.SlotObj.data.index; //插槽的位置
-                //obj.AttachmentObj = self.GirlSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //女孩附件的对象
-                // obj.AttachmentObj = self.BoySpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName); //男孩子附件的对象
-                obj.AttachmentObj = self.SelectSpine.skeleton.getAttachment(SlotNum, obj.AttacetmentName);
-                SlotObjAll.push(obj); //对象
-            }
-        });
-        // //console.log(SlotObjAll);
-        ////console.log("SlotObjAll...")
-        SlotObjAll.forEach((item) => {
-            if (item.AttachmentObj) {
-                item.SlotObj.setAttachment(item.AttachmentObj);
-            } else {
-                item.SlotObj.setAttachment(null);
-            }
-
-        })
-    }
-    takeoffSingleCloth($slotName) {
-        //this.GirlSpine.skeleton.findSlot($slotName).setAttachment(null);//女孩
-        //this.BoySpine.skeleton.findSlot($slotName).setAttachment(null); //男孩
-        this.SelectSpine.skeleton.findSlot($slotName).setAttachment(null)
-    }
-
+    getSlotAndAttacetment = getSlotAndAttacetment
+    changeDress = changeDress
+    takeoffSingleCloth = takeoffSingleCloth
     clearClass() {
         let self = this;
         //返回按钮事件
