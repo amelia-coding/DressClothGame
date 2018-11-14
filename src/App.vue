@@ -52,8 +52,8 @@ export default {
       this.gameStart().then(() => {
         //console.log("开始加载首页...");
         //测试使用
-        SceneManager.run(new HomePages());
-        //SceneManager.run(new HomeGamePlay());
+        //SceneManager.run(new HomePages());
+        SceneManager.run(new HomeGamePlay());
         //SceneManager.run(new HomeTransform());
         //SceneManager.run(new Home3Scene());
       });

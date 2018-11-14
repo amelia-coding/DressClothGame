@@ -6,7 +6,10 @@ import {
     createdSpine,
     createdText,
     createdStyle,
-    DialogCommon
+    DialogCommon,
+    takeoffSingleCloth,
+    getSlotAndAttacetment,
+    changeDress
 } from "./Common"
 import {
     TimelineMax
@@ -30,6 +33,15 @@ export default class HomePages extends PIXI.Container {
         this.GirlSpineEvent = null;
         this.BoySpine = null;
         this.BoySpineEvent = null;
+        this.BoySpineDress = ["Boy@hair@hair@europe_normal@normal_png"];
+        this.ClothDetail = {
+            Gender: null,
+            Cloth: null,
+            SlotName: null,
+            AttacetmentName: null,
+            End: null
+        };
+        this.Gender = null;
         this._Gb = { //滑块事件
             timeln: null,
             tween1: null,
@@ -58,22 +70,11 @@ export default class HomePages extends PIXI.Container {
             $x: 610,
             $y: 260,
         });
-        //这个是开始屏幕动画
-        this.ScreenTextSpine = createdSpine({
-            $this: self,
-            $alias: "ScreenText_spine",
-            $x: 1000,
-            $y: 140,
-            $animation0Name: "start",
-            $animation0Loop: false,
-            $secondAnimation: true,
-            $animation1Name: "normal",
-            $animation1Loop: true,
-        });
+
         //这个是女孩动画
         //添加滑块
         var mySwiper = new PixiSlider();
-        mySwiper.slideColorAlpha = 0.5;
+        mySwiper.slideColorAlpha = 0;
         mySwiper.slideWidth = 800;
         mySwiper.slideHeight = 800;
         mySwiper.swiperWidth = 1800;
@@ -93,6 +94,7 @@ export default class HomePages extends PIXI.Container {
             $alias: "Girl_spine",
             $x: 450,
             $y: 450,
+            $interactive: true,
             $buttonMode: true,
             $animation0Name: "normal",
             $addChild: false
@@ -110,6 +112,7 @@ export default class HomePages extends PIXI.Container {
             $alias: "Boy_spine",
             $x: 450,
             $y: 450,
+            $interactive: true,
             $buttonMode: true,
             $animation0Name: "normal",
             $addChild: false
@@ -120,6 +123,17 @@ export default class HomePages extends PIXI.Container {
             Garbage.setGarBage("Gender", "boy"); //男孩发送数据
             self.clearClass();
             SceneManager.run(new HomeGamePlay());
+        });
+
+        //接受参数
+        this.Gender = "boy";
+        this.classicon = Garbage.getGarBage("classicon");
+        this.AllSlotName = Garbage.getGarBage("allSlotName");
+        this.SelectSpine = this.BoySpine;
+        this.BoySpineDress.forEach((item) => {
+            // console.log(item)
+            this.getSlotAndAttacetment(item);
+            this.changeDress();
         });
         //设置延时解决可能出现的bug
         // this.DelayTime = setTimeout(() => {
@@ -182,6 +196,18 @@ export default class HomePages extends PIXI.Container {
             $alias: "HomeBg_jpg",
 
         });
+        //这个是开始屏幕动画
+        this.ScreenTextSpine = createdSpine({
+            $this: self,
+            $alias: "ScreenText_spine",
+            $x: 1000,
+            $y: 140,
+            $animation0Name: "start",
+            $animation0Loop: false,
+            $secondAnimation: true,
+            $animation1Name: "normal",
+            $animation1Loop: true,
+        });
         //按钮图标
         this.ButtonNormal = createdSprite({
             $this: self,
@@ -226,7 +252,7 @@ export default class HomePages extends PIXI.Container {
         //this.DialogCommon.DialogGoodButtonClickEvent(fn);
 
         this.DialogContainer = new PIXI.Container();
-        //this.addChild(this.DialogContainer);
+        this.addChild(this.DialogContainer);
         this.graphics = new PIXI.Graphics();
         this.graphics.beginFill(0x0000).drawRect(0, 0, 1920, 1080).endFill();
         this.graphics.alpha = 0.7;
@@ -302,6 +328,9 @@ export default class HomePages extends PIXI.Container {
 
 
     }
+    takeoffSingleCloth = takeoffSingleCloth
+    getSlotAndAttacetment = getSlotAndAttacetment
+    changeDress = changeDress
     DialogEffect(control = false) {
         this.ButtonNormal.interactive = control;
         this.ButtonClick.interactive = control;

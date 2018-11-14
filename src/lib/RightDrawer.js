@@ -95,8 +95,15 @@ class RightDrawer extends PIXI.Container {
                         // console.log(self.clothesDrawerBtnArr[chothIndex]);
                         // console.log("self.cloth...")
                         var clothes = new PIXI.Sprite(PIXI.Texture.from(self.clothesDrawerBtnArr[chothIndex]));
+                        var clothesName = self.clothesDrawerBtnArr[chothIndex];
+                        console.log(self.clothesDrawerBtnArr[chothIndex])
+                        console.log("self.clothesDrawerBtnArr[chothIndex])...@@@@")
+                        var clothes0 = new PIXI.Sprite(PIXI.Texture.from(self.clothesDrawerBtnArr[chothIndex] + "_click"));
                         //clothes.alpha = 1;
                         //item2.addChild(clothes); 改了这句话
+                        clothes0.visible = false;
+
+                        item.addChild(clothes0);
                         item.addChild(clothes);
                         //console.log(self.clothesDrawerBtnArr[chothIndex] + "......@")
                         if (self.clothesDrawerBtnArr[chothIndex] == undefined) {
@@ -105,7 +112,16 @@ class RightDrawer extends PIXI.Container {
                             item2.interactive = true;
                             if (!(index == 0 && index2 == 0)) {
                                 //这个是具体衣服事件...
-                                item2.on('pointertap', self.clothesItem_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
+                                item2.on("pointerdown", () => {
+                                    clothes.visible = false;
+                                    clothes0.visible = true;
+                                });
+                                item2.on("pointerup", () => {
+                                    clothes.visible = true;
+                                    clothes0.visible = false;
+                                    self.clothesItem_TapHandler(clothesName);
+                                });
+                                //item2.on('pointerup', self.clothesItem_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             } else {
                                 //这个是清除按钮...
                                 item2.on('pointertap', self.clearBtn_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
@@ -133,8 +149,8 @@ class RightDrawer extends PIXI.Container {
     };
     //点击具体的衣服物件触发;
     clothesItem_TapHandler(index, evt) {
-        //console.log(index);
-        //console.log("index...")
+        console.log(index);
+        console.log("index...")
         if (this.clothesDrawer_slider._movedPosArr.length < 3) {
             this.emitChangeCloth.call(this, index);
             //this
@@ -214,11 +230,33 @@ class RightDrawer extends PIXI.Container {
                     // var classDrawer_bg = new PIXI.Sprite(PIXI.Texture.from('classbtns_png'));
                     // classDrawer_slider.slidesArr[i].addChild(classDrawer_bg);
                     let icons = new PIXI.Sprite(PIXI.Texture.from(this.classDrawerBtnArr[i]));
+                    let icons0 = new PIXI.Sprite(PIXI.Texture.from(this.classDrawerBtnArr[i] + "_click"));
+
+                    classDrawer_slider.slidesArr[i].addChild(icons0);
                     classDrawer_slider.slidesArr[i].addChild(icons);
+
+                    icons0.x = 40;
+                    icons0.y = 15;
+
                     icons.x = 40;
                     icons.y = 15;
+
+                    icons0.interactive = true;
                     icons.interactive = true;
-                    icons.on('pointertap', self.classDrawBtn_tapHandler.bind(self, i), this)
+
+                    icons0.visible = false;
+                    icons.on("pointerdown", () => {
+                        icons.visible = false;
+                        icons0.visible = true;
+
+                    });
+                    //icons0.on("pointerup", self.classDrawBtn_tapHandler.bind(self, i));
+                    icons0.on('pointerup', () => {
+                        icons.visible = true;
+                        icons0.visible = false;
+                        self.classDrawBtn_tapHandler(i);
+                    })
+
                 }
             };
 
@@ -319,6 +357,7 @@ class RightDrawer extends PIXI.Container {
         }
         //类按钮事件...
     classDrawBtn_tapHandler(index, event) {
+
         const self = this;
         // console.log("类事件发生...")
         // console.log(index);

@@ -289,6 +289,8 @@ export default class HomeGamePlay extends PIXI.Container {
             this.BoySpine.visible = true;
             this.SelectSpine = null;
             this.SelectSpine = this.BoySpine;
+            this.getSlotAndAttacetment("Boy@hair@hair@europe_normal@normal_png");
+            this.changeDress();
         }
         //右衣柜
         this.RightDrawer = new RightDrawer();
