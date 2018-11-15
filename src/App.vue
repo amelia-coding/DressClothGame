@@ -53,9 +53,9 @@ export default {
         //console.log("开始加载首页...");
         //测试使用
         //SceneManager.run(new HomePages());
-        SceneManager.run(new HomeGamePlay());
+        //SceneManager.run(new HomeGamePlay());
         //SceneManager.run(new HomeTransform());
-        //SceneManager.run(new Home3Scene());
+        SceneManager.run(new Home3Scene());
       });
     },
     async gameStart() {
@@ -72,7 +72,7 @@ export default {
           .getElementById("netbadbackground")
           .parentNode.removeChild(document.getElementById("netbadbackground"));
       }
-      console.log("游戏资源加载完毕");
+      //console.log("游戏资源加载完毕");
       //console.log("游戏资源加载完毕...");
     },
     getPromise_resource() {

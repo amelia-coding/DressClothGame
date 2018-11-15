@@ -101,7 +101,7 @@
     "name": "Girl@dress@cloth@cloth_republic@normal_png",
     "url": "./img/DressAll/Girl/Cloth/Girl@dress@cloth@cloth_republic@normal.png"
 }, {
-    "name": "Girl@hair@hair@hair_egypt@normal_png_click",
+    "name": "Girl@hair@hair@hair_egypt@norml_png_click",
     "url": "./img/DressAll/Girl/Hair/Girl@hair@hair1@hair_egypt1@click.png"
 }, {
     "name": "Girl@hair@hair@hair_egypt@norml_png",
@@ -158,17 +158,32 @@
     "name": "classicon@cloth@cloth@cloth_normal@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@cloth@cloth@cloth_normal@normal_s.png"
 }, {
+    "name": "classicon@cloth@cloth@cloth_normal@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@cloth@cloth@cloth_normal@normal_s_click.png"
+}, {
     "name": "classicon@hair@hair@hair_normal@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@hair@hair@hair_normal@normal_s.png"
+}, {
+    "name": "classicon@hair@hair@hair_normal@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hair@hair@hair_normal@normal_s_click.png"
 }, {
     "name": "classicon@hat@hat@hat_normal@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@hat@hat@hat_normal@normal_s.png"
 }, {
+    "name": "classicon@hat@hat@hat_normal@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@hat@hat@hat_normal@normal_s_click.png"
+}, {
     "name": "classicon@props@pros1@props1_normal@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@props@pros1@props1_normal@normal_s.png"
 }, {
+    "name": "classicon@props@pros1@props1_normal@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@props@pros1@props1_normal@normal_s_click.png"
+}, {
     "name": "classicon@shoes@shoes@shoes_normal@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@shoes@shoes@shoes_normal@normal_s.png"
+}, {
+    "name": "classicon@shoes@shoes@shoes_normal@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@shoes@shoes@shoes_normal@normal_s_click.png"
 }, {
     "name": "All@all@all@all@normal_png",
     "url": "./img/ButtonImg/All@all@all@all@normal.png"
@@ -184,6 +199,9 @@
 }, {
     "name": "classicon@suit@suit@suit@normal_png_s",
     "url": "./img/DressAll/Girl/Classicon/classicon@suit@suit@suit@normal_s.png"
+}, {
+    "name": "classicon@suit@suit@suit@normal_png_s_click",
+    "url": "./img/DressAll/Girl/Classicon/classicon@suit@suit@suit@normal_s_click.png"
 }, {
     "name": "Girl@suit@suit0@suit_0@normal_png_click",
     "url": "./img/DressAll/Girl/Suits/Girl@suit@suit0@suit0@click.png"
@@ -242,6 +260,9 @@
     "name": "BoyClassicon@hair@hair@hair_normal@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@hair@hair@hair_normal@normal_s.png"
 }, {
+    "name": "BoyClassicon@hair@hair@hair_normal@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@hair@hair@hair_normal@normal_s_click.png"
+}, {
     "name": "BoyClassicon@hat@hat@hat_noraml@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@hat@hat@hat_noraml@click.png"
 }, {
@@ -250,6 +271,9 @@
 }, {
     "name": "BoyClassicon@hat@hat@hat_noraml@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@hat@hat@hat_noraml@normal_s.png"
+}, {
+    "name": "BoyClassicon@hat@hat@hat_noraml@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@hat@hat@hat_noraml@normal_s_click.png"
 }, {
     "name": "BoyClassicon@props@pros1@props1_normal@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@props@pros1@props1_normal@click.png"
@@ -260,6 +284,9 @@
     "name": "BoyClassicon@props@pros1@props1_normal@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@props@pros1@props1_normal@normal_s.png"
 }, {
+    "name": "BoyClassicon@props@pros1@props1_normal@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@props@pros1@props1_normal@normal_s_click.png"
+}, {
     "name": "BoyClassicon@shoes@shoes@shoes_normal@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@shoes@shoes@shoes_normal@click.png"
 }, {
@@ -268,6 +295,9 @@
 }, {
     "name": "BoyClassicon@shoes@shoes@shoes_normal@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@shoes@shoes@shoes_normal@normal_s.png"
+}, {
+    "name": "BoyClassicon@shoes@shoes@shoes_normal@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@shoes@shoes@shoes_normal@normal_s_click.png"
 }, {
     "name": "BoyClassicon@suit@suit@suit@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@suit@suit@suit@click.png"
@@ -278,6 +308,9 @@
     "name": "BoyClassicon@suit@suit@suit@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@suit@suit@suit@normal_s.png"
 }, {
+    "name": "BoyClassicon@suit@suit@suit@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@suit@suit@suit@normal_s_click.png"
+}, {
     "name": "BoyClassicon@trousers@trousers@trousers_normal@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@trousers@trousers@trousers_normal@click.png"
 }, {
@@ -287,6 +320,9 @@
     "name": "BoyClassicon@trousers@trousers@trousers_normal@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@trousers@trousers@trousers_normal@normal_s.png"
 }, {
+    "name": "BoyClassicon@trousers@trousers@trousers_normal@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@trousers@trousers@trousers_normal@normal_s_click.png"
+}, {
     "name": "BoyClassicon@cloth@cloth@cloth_normal@normal_png_click",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@cloth@cloth@cloth_normal@click.png"
 }, {
@@ -295,6 +331,9 @@
 }, {
     "name": "BoyClassicon@cloth@cloth@cloth_normal@normal_png_s",
     "url": "./img/DressAll/Boy/Classicon/BoyClassicon@cloth@cloth@cloth_normal@normal_s.png"
+}, {
+    "name": "BoyClassicon@cloth@cloth@cloth_normal@normal_png_s_click",
+    "url": "./img/DressAll/Boy/Classicon/BoyClassicon@cloth@cloth@cloth_normal@normal_s_click.png"
 }, {
     "name": "Boy@hair@hair@hair_europe@normal_png_click",
     "url": "./img/DressAll/Boy/Hair/Boy@hair@hair@hair_europe@click.png"
@@ -423,7 +462,7 @@
     "url": "./img/DressAll/Boy/Trousers/Boy@trousers@trousers@trousers_republic@noraml.png"
 }, {
     "name": "Dialog_jpg",
-    "url": "./img/ButtonImg/Dialog.jpg"
+    "url": "./img/ButtonImg/Dialog.png"
 }, {
     "name": "DialogSaveButtonNoraml_png",
     "url": "./img/ButtonImg/DialogSaveButtonNoraml.png"
@@ -454,4 +493,7 @@
 }, {
     "name": "DialogGoodClick_png",
     "url": "./img/ButtonImg/DialogGoodClick.png"
+}, {
+    "name": "BarDrawer_png",
+    "url": "./img/ButtonImg/BarDrawer.png"
 }]

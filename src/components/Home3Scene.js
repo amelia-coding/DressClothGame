@@ -62,7 +62,9 @@ export default class Home3Scene extends PIXI.Container {
             this.Gender = null;
         })()
         //接受参数
-        this.Gender = Garbage.getGarBage("Gender");
+        //测试使用
+        this.Gender = "girl";
+        //this.Gender = Garbage.getGarBage("Gender");
         this.classicon = Garbage.getGarBage("classicon");
         //测试使用
         //this.AllSlotName = [];
@@ -70,7 +72,9 @@ export default class Home3Scene extends PIXI.Container {
         //获取动画具体要穿的衣服
         this.AllSlotName = Garbage.getGarBage("allSlotName");
         //获取背景图
-        this.SceneNum = Garbage.getGarBage("ScenePosition");
+        //测试使用
+        this.SceneNum = 1;
+        //this.SceneNum = Garbage.getGarBage("ScenePosition");
         this.Scene.forEach((item) => {
             let itemObj = createdSprite({
                 $this: self,
@@ -194,13 +198,16 @@ export default class Home3Scene extends PIXI.Container {
         }
         //console.log(this.AllSlotName);
         //console.log("this.allslotNAME...")
-        this.AllSlotName.forEach((item) => {
-            if (item) {
-                this.getSlotAndAttacetment(item);
-                this.changeDress();
-            }
+        if (this.AllSlotName) {
+            this.AllSlotName.forEach((item) => {
+                if (item) {
+                    this.getSlotAndAttacetment(item);
+                    this.changeDress();
+                }
 
-        });
+            });
+        };
+
 
 
     }

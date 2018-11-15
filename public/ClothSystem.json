@@ -134,7 +134,8 @@
             "shoesL1": ["shoesL_egypt1", "shoesL_normal", "shoesL_republic"],
             "shoesL2": ["shoesL_egypt2", "shoesL_normal"],
             "shoesR1": ["shoesR_egypt1", "shoesR_normal", "shoesR_republic"],
-            "shoesR2": ["shoesR_egypt2", "shoesR_noraml"]
+            "shoesR2": ["shoesR_egypt2", "shoesR_noraml"],
+            "trousers": ["trousers_normal"]
         },
 
         "classIconArr": [
@@ -148,7 +149,7 @@
         "particularClothes": {
             "suit": [
                 "All@all@all@all@normal_png",
-                "Girl@suit@suit0@suit_0@normal_png",
+
                 "Girl@suit@suit1@suit_1@normal_png",
                 "Girl@suit@suit2@suit_2@normal_png",
                 "Girl@suit@suit3@suit_3@normal_png"

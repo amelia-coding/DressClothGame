@@ -95,14 +95,14 @@ class RightDrawer extends PIXI.Container {
                         // console.log(self.clothesDrawerBtnArr[chothIndex]);
                         // console.log("self.cloth...")
                         var clothes = new PIXI.Sprite(PIXI.Texture.from(self.clothesDrawerBtnArr[chothIndex]));
-                        var clothesName = self.clothesDrawerBtnArr[chothIndex];
-                        console.log(self.clothesDrawerBtnArr[chothIndex])
-                        console.log("self.clothesDrawerBtnArr[chothIndex])...@@@@")
+                        var clothesName = self.clothesDrawerBtnArr[chothIndex]; //目的是点击显示暗的图片
                         var clothes0 = new PIXI.Sprite(PIXI.Texture.from(self.clothesDrawerBtnArr[chothIndex] + "_click"));
+                        var BarDrawer = new PIXI.Sprite(PIXI.Texture.from("BarDrawer_png"));
+                        BarDrawer.y = 240;
                         //clothes.alpha = 1;
                         //item2.addChild(clothes); 改了这句话
                         clothes0.visible = false;
-
+                        item.addChild(BarDrawer);
                         item.addChild(clothes0);
                         item.addChild(clothes);
                         //console.log(self.clothesDrawerBtnArr[chothIndex] + "......@")
@@ -123,8 +123,20 @@ class RightDrawer extends PIXI.Container {
                                 });
                                 //item2.on('pointerup', self.clothesItem_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             } else {
-                                //这个是清除按钮...
-                                item2.on('pointertap', self.clearBtn_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
+                                //这个是清除按钮..
+                                console.log()
+                                item2.on("pointerdown", () => {
+                                    clothes.visible = false;
+                                    clothes0.visible = true;
+                                });
+                                item2.on("pointerup", () => {
+                                    clothes.visible = true;
+                                    clothes0.visible = false;
+                                    //self.clothesItem_TapHandler(clothesName);
+                                    self.clearBtn_TapHandler(clothesName);
+
+                                });
+                                // item2.on('pointertap', self.clearBtn_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             }
                         }
                         chothIndex++;
@@ -149,8 +161,6 @@ class RightDrawer extends PIXI.Container {
     };
     //点击具体的衣服物件触发;
     clothesItem_TapHandler(index, evt) {
-        console.log(index);
-        console.log("index...")
         if (this.clothesDrawer_slider._movedPosArr.length < 3) {
             this.emitChangeCloth.call(this, index);
             //this
@@ -297,12 +307,37 @@ class RightDrawer extends PIXI.Container {
                 // //背景;
                 //小按钮初始化...
                 this.clothesLittleBtn = new PIXI.Sprite();
+                this.clothesLittleBtn0 = new PIXI.Sprite();
+
                 this.clothesLittleBtn.x = -300;
+                this.clothesLittleBtn0.x = -300;
+
                 this.clothesLittleBtn.y = 475;
-                this.clothesDrawer.addChild(this.clothesLittleBtn);
-                this.clothesLittleBtn.interactive = true;
-                this.clothesLittleBtn.on('pointertap', this.clothesLittleBtn_TapHandler, this);
+                this.clothesLittleBtn0.y = 475;
+
                 this.clothesLittleBtn.buttonMode = true;
+                this.clothesLittleBtn0.buttonMode = true;
+
+                this.clothesLittleBtn.interactive = true;
+                this.clothesLittleBtn0.interactive = true;
+
+                this.clothesLittleBtn0.visible = false;
+
+
+                //this.clothesLittleBtn.on('pointertap', this.clothesLittleBtn_TapHandler, this);
+                this.clothesLittleBtn.on("pointerdown", () => {
+                    this.clothesLittleBtn.visible = false;
+                    this.clothesLittleBtn0.visible = true;
+                });
+                this.clothesLittleBtn0.on("pointerup", () => {
+                    this.clothesLittleBtn.visible = true;
+                    this.clothesLittleBtn0.visible = false;
+                    this.clothesLittleBtn_TapHandler();
+                });
+
+                this.clothesDrawer.addChild(this.clothesLittleBtn0);
+                this.clothesDrawer.addChild(this.clothesLittleBtn);
+
             }
 
             this.upperLine = new PIXI.Sprite(PIXI.Texture.from('shadowline_png'));
@@ -388,6 +423,8 @@ class RightDrawer extends PIXI.Container {
                 //console.log("这个加了_s...") //目的加小按钮
 
                 this.clothesLittleBtn.texture = PIXI.Texture.from(this.classIconName + "_s");
+                this.clothesLittleBtn0.texture = PIXI.Texture.from(this.classIconName + "_s_click");
+
                 self.setClothesDrawerArr.call(self, self._clothesObj[regs])
             }
 

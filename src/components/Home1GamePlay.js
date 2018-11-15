@@ -101,26 +101,30 @@ export default class HomeGamePlay extends PIXI.Container {
                     "Girl@props@props1@props1_normal@normal_png",
                     "Girl@dress@cloth@cloth_normal@normal_png",
                     "Girl@shoes@shoes@shoes_normal@normal_png",
+                    "Girl@trousers@trousers@trousers_normal@noraml_png",
                     "Girl@suit@suit@suit@normal_png" //辅助使用
                 ],
                 [
-                    "Girl@hat@hat@hat_egypt@normal_png",
-                    "Girl@hair@hair@hair_egypt@norml_png",
                     "Girl@dress@cloth@cloth_egypt@normal_png",
+                    "Girl@hair@hair@hair_egypt@norml_png",
+                    "Girl@hat@hat@hat_egypt@normal_png",
+                    "Girl@props1@props1@props1_egypt@normal_png",
                     "Girl@shoes@shoes@shoes_egypt@normal_png",
-                    "Girl@suit@suit@suit@normal_png" //辅助使用
+                    "Girl@suit@suit@suit@normal_png" //辅助使用 第一个OK
                 ],
                 [
-                    "Girl@hair@hair@hair_republic@normal_png",
-                    "Girl@props@props1@props1_republic@normal_png",
                     "Girl@dress@cloth@cloth_republic@normal_png",
+                    "Girl@hair@hair@hair_republic@normal_png",
+                    "Girl@hat@hat@hat_normal@normal_png",
+                    "Girl@props@props1@props1_republic@normal_png",
                     "Girl@shoes@shoes@shoes_republic@normal_png",
-                    "Girl@suit@suit@suit@normal_png" //辅助使用
+                    "Girl@suit@suit@suit@normal_png" //辅助使用 第二个OK
                 ],
                 [
-                    "Girl@hat@hat@hat_europe@normal_png",
-                    "Girl@hair@hair@hair_europe@normal_png",
                     "Girl@dress@cloth@cloth_europe@normal_png",
+                    "Girl@hair@hair@hair_europe@normal_png",
+                    "Girl@hat@hat@hat_europe@normal_png",
+                    "Girl@props@props1@props1_normal@normal_png",
                     "Girl@shoes@shoes@shoes_republic@normal_png",
                     "Girl@suit@suit@suit@normal_png" //辅助使用
                 ],
@@ -152,6 +156,7 @@ export default class HomeGamePlay extends PIXI.Container {
         })()
         //测试使用
         this.Gender = "girl";
+        //this.Gender = "boy";
         //正式使用
         //this.Gender = Garbage.getGarBage("Gender");
         //获取数据
@@ -206,11 +211,9 @@ export default class HomeGamePlay extends PIXI.Container {
             self.ResetProfileButtonClick.visible = false;
             self.Suit[this.Gender][0].forEach((item) => {
                 self.getSlotAndAttacetment(item); //把具体
-                //getSlotAndAttacetment(item)
-
-                self.changeDress(); //换装
-                //changeDress();
+                self.changeDress(); //换装     
             });
+            self.SpineHappy();
         });
         //穿越时空按钮
         this.CrossTimeButtonNoraml = createdSprite({
@@ -284,12 +287,13 @@ export default class HomeGamePlay extends PIXI.Container {
             this.BoySpine.visible = false;
             this.SelectSpine = null;
             this.SelectSpine = this.GirlSpine;
+            //this.takeoffSingleCloth("trousers")
         } else {
             this.GirlSpine.visible = false;
             this.BoySpine.visible = true;
             this.SelectSpine = null;
             this.SelectSpine = this.BoySpine;
-            this.getSlotAndAttacetment("Boy@hair@hair@europe_normal@normal_png");
+            this.getSlotAndAttacetment("Boy@hair@hair@europe_normal@normal_png"); //修改男孩的发型  
             this.changeDress();
         }
         //右衣柜
@@ -298,8 +302,6 @@ export default class HomeGamePlay extends PIXI.Container {
         this.RightDrawer.y = 30;
         //主要分类
         this.RightDrawer.setClassDrawerArr(self.classicon[this.Gender].classIconArr)
-        console.log(this.RightDrawer)
-        console.log("this.RightDrawer...")
         this.RightDrawer.setParticularClothes(self.classicon[this.Gender].particularClothes);
 
         this.RightDrawer.init();
@@ -307,9 +309,9 @@ export default class HomeGamePlay extends PIXI.Container {
         //开始具体换装衣服
 
         this.RightDrawer.setEmitChangeCloth((clothDetailName) => {
-            //一共两步 第一步 是具体化  第二步是换装
+            //一共三步 第一步 是具体化  第二步是换装   第三步 是高兴一下
+            //console.log(clothDetailName);
             //console.log("...")
-            //console.log(clothDetailName)
             let self = this;
 
             self.getSlotAndAttacetment(clothDetailName); //把具体化
@@ -321,33 +323,42 @@ export default class HomeGamePlay extends PIXI.Container {
                 let num = Number(self.ClothDetail.AttacetmentName);
                 self.Suit[self.Gender][num].forEach((item) => {
                     self.getSlotAndAttacetment(item); //把具体化
-                    self.changeDress(); //换装
+                    self.changeDress(); //换装 
                 });
+                self.SpineHappy(); //高兴一下
             } else {
                 self.changeDress(); //换装
+                self.SpineHappy(); //高兴一下
             }
 
         });
         this.RightDrawer.setEmitClearCloth(() => {
             let self = this;
-            // console.log(self.ClothDetail.Cloth);
-            // console.log("self.ClothDetail.Cloth...")
+            //console.log(self.ClothDetail);
+            //console.log("self.ClothDetail.Cloth...")
             if (self.ClothDetail.Cloth == "suit") {
                 self.Suit[this.Gender][0].forEach((item) => {
+
                     self.getSlotAndAttacetment(item); //把具体化
                     self.changeDress(); //换装
                 });
+                self.SpineHappy(); //高兴一下
             } else {
                 let cloth = this.ClothDetail.Gender + "@" +
                     this.ClothDetail.Cloth + "@" +
                     this.ClothDetail.SlotName + "@" +
                     this.ClothDetail.AttacetmentName + "_normal@" +
                     this.ClothDetail.End;
+
+                if (self.ClothDetail.Gender == "Girl" && self.ClothDetail.Cloth == "dress" && self.ClothDetail.AttacetmentName == "republic") {
+                    self.getSlotAndAttacetment("Girl@trousers@trousers@trousers_normal@noraml_png");
+                    self.changeDress(); //这个解决的是在解决换装的republic 中有一个印象效果产生的下面没有衣服状态
+                }
                 //console.log(cloth);
                 //console.log("cloth...")
                 self.getSlotAndAttacetment(cloth)
                 self.changeDress(); //换装
-
+                self.SpineHappy(); //高兴一下
             }
 
         });
@@ -434,15 +445,17 @@ export default class HomeGamePlay extends PIXI.Container {
             SceneManager.run(new HomePages());
         });
 
-        // console.log(this.RightDrawer.getChildByName(classDrawer));
-        // console.log(this.RightDrawer.children);
-        // console.log(this.RightDrawer.children[3]);
-        // console.log(this.RightDrawer.children[3].children);
-        // console.log(this.RightDrawer.children[3].children[0]);
-        // console.log(this.RightDrawer.children[3].children[0].children[1]);
-        // console.log(this.RightDrawer.children[3].children[0].children[1].children)
-        // console.log("....")
-
+    }
+    takeoffSingleCloth = takeoffSingleCloth
+    changeDress = changeDress
+    SpineHappy() {
+        let self = this;
+        self.SelectSpine.state.setAnimation(0, "happy", false);
+        self.SelectSpine.state.tracks[0].listener = {
+            complete: () => {
+                self.SelectSpine.state.setAnimation(0, "normal", true)
+            }
+        }
     }
     getSlotAndAttacetment(clothDetailName) {
         // console.log(clothDetailName)
@@ -455,8 +468,6 @@ export default class HomeGamePlay extends PIXI.Container {
         this.ClothDetail.End = $nameDetail[4];
         this.allSlotName[$nameDetail[2]] = clothDetailName;
     }
-    takeoffSingleCloth = takeoffSingleCloth
-    changeDress = changeDress
     DialogEventEffect(control = false) {
         this.BackButtonNormal.interactive = control;
         this.BackButtonClick.interactive = control;

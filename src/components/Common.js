@@ -23,8 +23,8 @@ function createdSprite({
     $name.buttonMode = $buttonMode;
     $name.scale.set($scale);
     $name.anchor.set($anchor);
-    $pivotX && ($name.pivot.x = ($name.width) / 2);
-    $pivotY && ($name.pivot.y = $name.height);
+    $pivotX && ($name.pivot.x = ($name.width) / 6);
+    $pivotY && ($name.pivot.y = ($name.height) / 6);
     $addChild && $this.addChild($name);
     return $name;
 }
@@ -155,6 +155,11 @@ function changeDress() {
     //console.log(this.allSlotName);
     //console.log("this.allSlotName...")
     let self = this;
+    if (self.ClothDetail.Gender == "Girl" && self.ClothDetail.Cloth == "dress") {
+        // self.getSlotAndAttacetment("Girl@trousers@trousers@trousers_normal@noraml_png");
+        (self.ClothDetail.AttacetmentName == "republic") && self.takeoffSingleCloth("trousers"); //console.log("先脱Bug的衣服...") //这个是解决的是衣服中有一个阴影
+
+    }
     let SlotName = []; //插槽的名字
     let SlotObjAll = []; //获取插槽对象
 
@@ -174,7 +179,6 @@ function changeDress() {
         //obj.SlotObj = self.BoySpine.skeleton.findSlot(item) //男孩插槽对象
         //obj.SlotObj = self.GirlSpine.skeleton.findSlot(item) //女孩插槽对象
         obj.SlotObj = self.SelectSpine.skeleton.findSlot(item)
-
 
         // this.classicon.girl.SlotAndAttachment[item].forEach((item1) => { //女孩
         //this.classicon.boy.SlotAndAttachment[item].forEach((item1) => { //男孩
