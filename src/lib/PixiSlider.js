@@ -262,6 +262,8 @@ class PixiSlider extends PIXI.Container {
     hor_pointermove(event) {
         const self = this;
         const currentTarget = event.currentTarget;
+
+        //PIXI.sound.play("Slide_mp3");
         if (self.dragMoving) {
 
             if (self._movedPosArr.length > 3) {
@@ -311,6 +313,7 @@ class PixiSlider extends PIXI.Container {
         this.realIndex = $slideNum;
 
         if (self.swiperDirection == 'horizontal') {
+
             self._slideToTween = TweenMax.to(self.wrapper, $times, {
                 x: -1 * ($slideNum * this.slideWidth),
                 onStart: function() {

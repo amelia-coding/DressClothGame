@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
 import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
 import {
+    createdSound,
     createdSprite,
     createdSpine,
     createdText,
@@ -58,12 +59,23 @@ export default class HomePages extends PIXI.Container {
         this.DialogNoSaveButtonNormalEvent = null;
         this.DialogNoSaveButtonClick = null;
         this.DialogNoSaveButtonClickEvent = null;
+        //声音数据
+        this.PlayGameBgMp3 = null;
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
         let self = this;
         //console.log("这个是首页内容开始...");
-        //小背景图
+        //声音
+        this.PlayGameBgMp3 = createdSound({
+            $alias: "PlayGameBg_mp3",
+            $start: Garbage.getGarBage("SoundProgress"),
+            $loop: true,
+            $volume: 0.5
+        });
+        console.log(this.PlayGameBgMp3);
+        console.log("this.PlayGameBg...")
+            //小背景图
         createdSprite({
             $this: self,
             $alias: "HomeBgLitter_png",
@@ -220,6 +232,9 @@ export default class HomePages extends PIXI.Container {
             //console.log("这个事件执行了down...");
             self.ButtonNormal.visible = false;
             self.ButtonClick.visible = true;
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
         });
         this.ButtonClick = createdSprite({
             $this: self,
@@ -250,7 +265,10 @@ export default class HomePages extends PIXI.Container {
         //         console.log("...........@")
         //     };
         //this.DialogCommon.DialogGoodButtonClickEvent(fn);
-
+        //弹窗音效
+        createdSound({
+            $alias: "Dialog_mp3"
+        });
         this.DialogContainer = new PIXI.Container();
         this.addChild(this.DialogContainer);
         this.graphics = new PIXI.Graphics();
@@ -283,6 +301,9 @@ export default class HomePages extends PIXI.Container {
         }).on("pointerdown", this.DialogSaveButtonClickEvent = () => {
             this.DialogSaveButtonNormal.visible = false;
             this.DialogSaveButtonClick.visible = true;
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
         });
         this.DialogSaveButtonClick = createdSprite({
             $this: this.DialogContainer,
@@ -309,6 +330,9 @@ export default class HomePages extends PIXI.Container {
         }).on("pointerdown", this.DialogNoSaveButtonNormalEvent = () => {
             this.DialogNoSaveButtonNormal.visible = false;
             this.DialogNoSaveButtonClick.visible = true;
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
         });
         this.DialogNoSaveButtonClick = createdSprite({
             $this: this.DialogContainer,
@@ -339,6 +363,11 @@ export default class HomePages extends PIXI.Container {
     }
     clearClass() {
         //console.log("clearClass事件发生了");
+        //声音数据
+        PIXI.sound.pause("PlayGameBg_mp3"); //声音暂停...
+        Garbage.clearGarBage("SoundProgress"); //清除声音数据
+        Garbage.setGarBage("SoundProgress", this.PlayGameBgMp3._duration * this.PlayGameBgMp3.progress); //发送声音数据
+        this.PlayGameBgMp3 = null;
         //清空定时器
         clearTimeout(this.DelayTime);
         let self = this;

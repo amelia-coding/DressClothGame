@@ -1,5 +1,21 @@
 import * as PIXI from 'pixi.js'
 
+
+function createdSound({
+    $name = "sound",
+    $alias = "PlayGameBg_mp3",
+    $loop = false,
+    $start = 0,
+    $volume = 1,
+}) {
+    $name = PIXI.sound.play($alias, {
+        start: $start,
+        loop: $loop,
+    });
+    $name.volume = $volume;
+    return $name;
+}
+
 function createdSprite({
     $this = self,
     $name = {},
@@ -261,6 +277,8 @@ class DialogCommon {
 
 }
 export {
+    createdSound,
+    createdBgSound,
     createdSprite,
     createdText,
     createdStyle,

@@ -3,6 +3,7 @@ import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
 import RightDrawer from "../lib/RightDrawer.js";
 import {
+    createdSound,
     createdSprite,
     createdSpine,
     commonBg,
@@ -55,6 +56,8 @@ export default class HomeTransform extends PIXI.Container {
             End: null
         };
         this.TimeGuild = null;
+        //声音数据
+        this.PlayGameBgMp3 = null;
         this.on("added", this.addedTransform, this);
     }
     addedTransform() {
@@ -72,6 +75,13 @@ export default class HomeTransform extends PIXI.Container {
         //this.Gender = Garbage.getGarBage("Gender");
         this.classicon = Garbage.getGarBage("classicon");
         this.AllSlotName = Garbage.getGarBage("allSlotName");
+        //背景声音
+        this.PlayGameBgMp3 = createdSound({
+            $alias: "PlayGameBg_mp3",
+            $start: Garbage.getGarBage("SoundProgress"),
+            $loop: true,
+            $volume: 0.5
+        });
         //背景图
         this.transformBg = createdSprite({
             $this: self,
@@ -92,6 +102,9 @@ export default class HomeTransform extends PIXI.Container {
         //返回按钮事件
         this.BackButtonNormal = this.Common.BackButtonNormal;
         this.BackButtonNormal.on("pointerdown", self.BackButtonNormalEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             self.BackButtonClick.visible = true;
             self.BackButtonNormal.visible = false;
         })
@@ -181,13 +194,16 @@ export default class HomeTransform extends PIXI.Container {
             // itemObj.pivot.x = itemObj.width / 2;
             itemObj.on("pointertap", itemEvent = () => {
                 itemObj.scale.set(0.4);
+                createdSound({
+                    $alias: "Button_mp3"
+                }); //按钮声音音效
                 //跳转
                 this.TimeGuild = setTimeout(() => {
                     Garbage.clearGarBage("ScenePosition");
                     Garbage.setGarBage("ScenePosition", index);
                     this.clearClass();
                     SceneManager.run(new Home3Scene());
-                }, 500);
+                }, 200);
 
             })
             self.SceneEventArr.push(itemEvent);
@@ -238,6 +254,11 @@ export default class HomeTransform extends PIXI.Container {
     takeoffSingleCloth = takeoffSingleCloth
     clearClass() {
         let self = this;
+        //声音数据
+        PIXI.sound.pause("PlayGameBg_mp3"); //声音暂停...
+        Garbage.clearGarBage("SoundProgress"); //清除声音数据
+        Garbage.setGarBage("SoundProgress", this.PlayGameBgMp3._duration * this.PlayGameBgMp3.progress); //发送声音数据
+        this.PlayGameBgMp3 = null;
         //定时器事件
         if (this.TimeGuild) {
             clearTimeout(this.TimeGuild);

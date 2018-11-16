@@ -3,6 +3,7 @@ import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
 import RightDrawer from "../lib/RightDrawer.js";
 import {
+    createdSound,
     createdSprite,
     createdSpine,
     commonBg,
@@ -148,6 +149,8 @@ export default class HomeGamePlay extends PIXI.Container {
         this.DialogNoSaveButtonNormalEvent = null;
         this.DialogNoSaveButtonClick = null;
         this.DialogNoSaveButtonClickEvent = null;
+        //声音数据
+        this.PlayGameBgMp3 = null;
         this.on("added", this.addedHomePageStage, this);
     }
     addedHomePageStage() {
@@ -162,6 +165,14 @@ export default class HomeGamePlay extends PIXI.Container {
         //获取数据
         this.classicon = Garbage.getGarBage("classicon");
 
+        //声音
+        this.PlayGameBgMp3 = createdSound({
+            $alias: "PlayGameBg_mp3",
+            $start: Garbage.getGarBage("SoundProgress"),
+            $loop: true,
+            $volume: 0.2
+        });
+
         let self = this;
         createdSprite({
             $this: self,
@@ -173,6 +184,9 @@ export default class HomeGamePlay extends PIXI.Container {
         //返回按钮事件
         this.BackButtonNormal = this.Common.BackButtonNormal;
         this.BackButtonNormal.on("pointerdown", self.BackButtonNormalEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             self.BackButtonClick.visible = true;
             self.BackButtonNormal.visible = false;
         })
@@ -180,6 +194,10 @@ export default class HomeGamePlay extends PIXI.Container {
         this.BackButtonClick.on("pointerup", self.BackButtonClickEvent = () => {
             self.BackButtonNormal.visible = true;
             self.BackButtonClick.visible = false;
+            //弹窗音效
+            createdSound({
+                $alias: "Dialog_mp3"
+            });
             this.addChild(this.DialogContainer);
             self.DialogEventEffect();
 
@@ -195,6 +213,9 @@ export default class HomeGamePlay extends PIXI.Container {
             $interactive: true,
             $buttonMode: true,
         }).on("pointerdown", self.ResetProfileButtonNormalEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             self.ResetProfileButtonNormal.visible = false;
             self.ResetProfileButtonClick.visible = true;
         });
@@ -224,6 +245,9 @@ export default class HomeGamePlay extends PIXI.Container {
             $interactive: true,
             $buttonMode: true,
         }).on("pointerdown", self.CrossTimeButtonNoramlEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             this.CrossTimeButtonNoraml.visible = false;
             this.CrossTimeButtonClick.visible = true;
         });
@@ -295,6 +319,7 @@ export default class HomeGamePlay extends PIXI.Container {
             this.SelectSpine = this.BoySpine;
             this.getSlotAndAttacetment("Boy@hair@hair@europe_normal@normal_png"); //修改男孩的发型  
             this.changeDress();
+
         }
         //右衣柜
         this.RightDrawer = new RightDrawer();
@@ -309,7 +334,7 @@ export default class HomeGamePlay extends PIXI.Container {
         //开始具体换装衣服
 
         this.RightDrawer.setEmitChangeCloth((clothDetailName) => {
-            //一共三步 第一步 是具体化  第二步是换装   第三步 是高兴一下
+            //一共三步 第一步 是具体化  第二步是换装   第三步 是声音及其高兴一下
             //console.log(clothDetailName);
             //console.log("...")
             let self = this;
@@ -324,10 +349,18 @@ export default class HomeGamePlay extends PIXI.Container {
                 self.Suit[self.Gender][num].forEach((item) => {
                     self.getSlotAndAttacetment(item); //把具体化
                     self.changeDress(); //换装 
+                    //换装声音
+                    createdSound({
+                        $alias: "ChangDressCloth_mp3",
+                    });
                 });
                 self.SpineHappy(); //高兴一下
             } else {
                 self.changeDress(); //换装
+                //换装声音
+                createdSound({
+                    $alias: "ChangDressCloth_mp3",
+                });
                 self.SpineHappy(); //高兴一下
             }
 
@@ -336,6 +369,9 @@ export default class HomeGamePlay extends PIXI.Container {
             let self = this;
             //console.log(self.ClothDetail);
             //console.log("self.ClothDetail.Cloth...")
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             if (self.ClothDetail.Cloth == "suit") {
                 self.Suit[this.Gender][0].forEach((item) => {
 
@@ -401,6 +437,9 @@ export default class HomeGamePlay extends PIXI.Container {
             $interactive: true,
             $buttonMode: true
         }).on("pointerdown", this.DialogSaveButtonClickEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             this.DialogSaveButtonNormal.visible = false;
             this.DialogSaveButtonClick.visible = true;
         });
@@ -427,6 +466,9 @@ export default class HomeGamePlay extends PIXI.Container {
             $interactive: true,
             $buttonMode: true
         }).on("pointerdown", this.DialogNoSaveButtonNormalEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             this.DialogNoSaveButtonNormal.visible = false;
             this.DialogNoSaveButtonClick.visible = true;
         });
@@ -491,6 +533,11 @@ export default class HomeGamePlay extends PIXI.Container {
     clearClass() {
         this.transformSlot();
         let self = this;
+        //声音数据
+        PIXI.sound.pause("PlayGameBg_mp3"); //声音暂停...
+        Garbage.clearGarBage("SoundProgress"); //清除声音数据
+        Garbage.setGarBage("SoundProgress", this.PlayGameBgMp3._duration * this.PlayGameBgMp3.progress); //发送声音数据
+        this.PlayGameBgMp3 = null;
         //返回按钮事件
         this.BackButtonNormal.off("pointerdown", self.BackButtonNormalEvent);
         this.BackButtonClick.off("pointerup", self.BackButtonClickEvent);

@@ -132,7 +132,7 @@
     "url": "./img/DressAll/Girl/Hat/Girl@hat@hat@hat_europe@normal.png"
 }, {
     "name": "Girl@props@props1@props1_republic@normal_png_click",
-    "url": "./img/DressAll/Girl//props/Girl@props@props1@props1_republic@click.png"
+    "url": "./img/DressAll/Girl/props/Girl@props@props1@props1_republic@click.png"
 }, {
     "name": "Girl@props@props1@props1_republic@normal_png",
     "url": "./img/DressAll/Girl/props/Girl@props@props1@props1_republic@normal.png"
@@ -390,7 +390,7 @@
     "url": "./img/DressAll/Boy/Hat/Boy@hat@hat@hat_europe@normal.png"
 }, {
     "name": "Boy@props@props@propsl_egypt@normal_png_click",
-    "url": "./img/DressAll/Boy/propsBoy@props@props@propsl_egypt@click.png"
+    "url": "./img/DressAll/Boy/props/Boy@props@props@propsl_egypt@click.png"
 }, {
     "name": "Boy@props@props@propsl_egypt@noraml_png",
     "url": "./img/DressAll/Boy/props/Boy@props@props@propsl_egypt@noraml.png"
@@ -496,4 +496,25 @@
 }, {
     "name": "BarDrawer_png",
     "url": "./img/ButtonImg/BarDrawer.png"
+}, {
+    "name": "PlayGameBg_mp3",
+    "url": "./sound/PlayGameBg.mp3"
+}, {
+    "name": "ChangDressCloth_mp3",
+    "url": "./sound/ChangDressCloth.mp3"
+}, {
+    "name": "Photo_mp3",
+    "url": "./sound/Photo.mp3"
+}, {
+    "name": "Slide_mp3",
+    "url": "./sound/Slide.mp3"
+}, {
+    "name": "Dialog_mp3",
+    "url": "./sound/Dialog.mp3"
+}, {
+    "name": "Button_mp3",
+    "url": "./sound/Button.mp3"
+}, {
+    "name": "Shadow_png",
+    "url": "./img/Scene/Shadow.png"
 }]

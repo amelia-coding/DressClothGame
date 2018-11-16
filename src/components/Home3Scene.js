@@ -3,6 +3,7 @@ import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
 import RightDrawer from "../lib/RightDrawer.js";
 import {
+    createdSound,
     createdSprite,
     createdSpine,
     commonBg,
@@ -52,6 +53,8 @@ export default class Home3Scene extends PIXI.Container {
             End: null
         };
         this.Gender = null;
+        //声音数据
+        this.PlayGameBgMp3 = null;
         this.on("added", this.addedTransform, this);
     }
     addedTransform() {
@@ -75,6 +78,13 @@ export default class Home3Scene extends PIXI.Container {
         //测试使用
         this.SceneNum = 1;
         //this.SceneNum = Garbage.getGarBage("ScenePosition");
+        //背景声音
+        this.PlayGameBgMp3 = createdSound({
+            $alias: "PlayGameBg_mp3",
+            $start: Garbage.getGarBage("SoundProgress"),
+            $loop: true,
+            $volume: 0.5
+        });
         this.Scene.forEach((item) => {
             let itemObj = createdSprite({
                 $this: self,
@@ -92,6 +102,9 @@ export default class Home3Scene extends PIXI.Container {
         this.BackButtonNormal = this.Common.BackButtonNormal;
         this.BackButtonNormal.x = 33;
         this.BackButtonNormal.on("pointerdown", self.BackButtonNormalEvent = () => {
+            createdSound({
+                $alias: "Button_mp3"
+            }); //按钮声音音效
             self.BackButtonClick.visible = true;
             self.BackButtonNormal.visible = false;
         })
@@ -125,7 +138,10 @@ export default class Home3Scene extends PIXI.Container {
             $visible: false
         }).on("pointerup", this.PhotoButtonClickEvent = () => {
             this.PhotoButtonNormal.visible = true;
-            this.PhotoButtonClick.visible = false
+            this.PhotoButtonClick.visible = false;
+            createdSound({
+                $alias: "Photo_mp3"
+            })
         });
         //文字板块事件
         this.TextBorad = createdSprite({
@@ -156,11 +172,18 @@ export default class Home3Scene extends PIXI.Container {
         });
         this.TextSpriteArr = [];
         Text.forEach((item, index) => {
-            let TextSprite = new PIXI.Text(item, this.TextStyle1);
-            TextSprite.x = 320 - index * 60;
-            TextSprite.y = 300;
-            this.TextSpriteArr.push(TextSprite);
-            this.addChild(TextSprite);
+                let TextSprite = new PIXI.Text(item, this.TextStyle1);
+                TextSprite.x = 320 - index * 60;
+                TextSprite.y = 300;
+                this.TextSpriteArr.push(TextSprite);
+                this.addChild(TextSprite);
+            })
+            //人物阴影效果
+        this.shadow = createdSprite({
+            $this: self,
+            $alias: "Shadow_png",
+            $x: 900,
+            $y: 950
         })
 
         //样式2...
@@ -168,8 +191,8 @@ export default class Home3Scene extends PIXI.Container {
         this.GirlSpine = createdSpine({
             $this: self,
             $alias: "Girl_spine",
-            $x: 950,
-            $y: 500,
+            $x: 1050,
+            $y: 700,
             $buttonMode: true,
             $visible: false,
             $animation0Name: "normal",
@@ -178,7 +201,7 @@ export default class Home3Scene extends PIXI.Container {
         this.BoySpine = createdSpine({
             $this: self,
             $alias: "Boy_spine",
-            $x: 950,
+            $x: 1050,
             $y: 700,
             $buttonMode: true,
             $visible: false,
@@ -208,14 +231,17 @@ export default class Home3Scene extends PIXI.Container {
             });
         };
 
-
-
     }
     getSlotAndAttacetment = getSlotAndAttacetment
     changeDress = changeDress
     takeoffSingleCloth = takeoffSingleCloth
     clearClass() {
         let self = this;
+        //声音数据
+        PIXI.sound.pause("PlayGameBg_mp3"); //声音暂停...
+        Garbage.clearGarBage("SoundProgress"); //清除声音数据
+        Garbage.setGarBage("SoundProgress", this.PlayGameBgMp3._duration * this.PlayGameBgMp3.progress); //发送声音数据
+        this.PlayGameBgMp3 = null;
         //返回按钮事件
         this.BackButtonNormal.off("pointerdown", self.BackButtonNormalEvent);
         this.BackButtonClick.off("pointerup", self.BackButtonClickEvent);

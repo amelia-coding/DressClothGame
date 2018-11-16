@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "gsap": "^2.0.2",
+    "pixi-sound": "^2.0.4",
     "pixi-spine": "^1.5.18",
     "pixi.js": "^4.8.2",
     "register-service-worker": "^1.0.0",

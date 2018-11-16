@@ -340,31 +340,31 @@ class RightDrawer extends PIXI.Container {
 
             }
 
-            this.upperLine = new PIXI.Sprite(PIXI.Texture.from('shadowline_png'));
-            this.downLine = new PIXI.Sprite(PIXI.Texture.from('shadowline_png'));
+            // this.upperLine = new PIXI.Sprite(PIXI.Texture.from('shadowline_png'));
+            // this.downLine = new PIXI.Sprite(PIXI.Texture.from('shadowline_png'));
 
-            this.upperLine.x = 0;
-            this.upperLine.y = 0;
-            this.addChild(this.upperLine)
-            this.downLine.x = 0;
-            this.downLine.scale.y = -1;
-            this.downLine.y = this.classDrawer.getChildAt(0).swiperHeight;
-            this.addChild(this.downLine)
-            this.upperLine.alpha = this.downLine.alpha = 0;
+            // this.upperLine.x = 0;
+            // this.upperLine.y = 0;
+            // this.addChild(this.upperLine)
+            // this.downLine.x = 0;
+            // this.downLine.scale.y = -1;
+            // this.downLine.y = this.classDrawer.getChildAt(0).swiperHeight;
+            // this.addChild(this.downLine)
+            // this.upperLine.alpha = this.downLine.alpha = 0;
 
             let heightC = self.classDrawer.getChildAt(0).wrapper.height - self.classDrawer.getChildAt(0).swiperHeight;
             self.tickers = new PIXI.ticker.Ticker();
             self.tickers.add(() => {
                 if (self.classDrawer.getChildAt(0).wrapper.y <= 0 && self.classDrawer.getChildAt(0).wrapper.y >= -16) {
-                    self.upperLine.alpha = 0;
+                    //self.upperLine.alpha = 0;
                 } else {
-                    self.upperLine.alpha = 1;
+                    //  self.upperLine.alpha = 1;
                 }
 
                 if (self.classDrawer.getChildAt(0).wrapper.y <= -1 * heightC + 20) {
-                    self.downLine.alpha = 0;
+                    // self.downLine.alpha = 0;
                 } else {
-                    self.downLine.alpha = 1;
+                    // self.downLine.alpha = 1;
                 }
             })
             self.tickers.start();
@@ -400,8 +400,8 @@ class RightDrawer extends PIXI.Container {
         if (this.classDrawer.getChildAt(0)._movedPosArr.length < 3) {
             if (this.classDrawerAnimating == false) {
                 self.tickers.stop();
-                self.upperLine.alpha = 0;
-                self.downLine.alpha = 0;
+                //self.upperLine.alpha = 0;
+                //self.downLine.alpha = 0;
 
                 // PIXI.sound.play('pullout')
                 //this.hideClassDrawer();
@@ -452,6 +452,7 @@ class RightDrawer extends PIXI.Container {
     }
 
     showclothesDrawer($callback = function() {}, $time = .3) {
+        PIXI.sound.play("Slide_mp3");
         TweenMax.to(this.clothesDrawer, $time, {
             x: 0,
             onComplete: function() {
@@ -461,6 +462,7 @@ class RightDrawer extends PIXI.Container {
     }
 
     hideclothesDrawer($callback = function() {}, $time = .3) {
+        PIXI.sound.play("Slide_mp3");
         TweenMax.to(this.clothesDrawer, $time, {
             x: 250, //600
             onComplete: function() {
