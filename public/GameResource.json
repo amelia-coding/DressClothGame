@@ -517,4 +517,7 @@
 }, {
     "name": "Shadow_png",
     "url": "./img/Scene/Shadow.png"
+}, {
+    "name": "Flash_jpg",
+    "url": "./img/Flash.jpg"
 }]

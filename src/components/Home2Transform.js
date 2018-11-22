@@ -1,3 +1,4 @@
+//这个是选择时空页
 import * as PIXI from "pixi.js";
 import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
@@ -69,10 +70,10 @@ export default class HomeTransform extends PIXI.Container {
         })()
         //接受参数
         //测试状态
-        //正式状态
-        this.Gender = "girl";
+        //this.Gender = "girl";
         //this.Gender = "boy";
-        //this.Gender = Garbage.getGarBage("Gender");
+        //正式状态
+        this.Gender = Garbage.getGarBage("Gender");
         this.classicon = Garbage.getGarBage("classicon");
         this.AllSlotName = Garbage.getGarBage("allSlotName");
         //背景声音
@@ -186,6 +187,7 @@ export default class HomeTransform extends PIXI.Container {
                 $scale: 0.3,
                 $interactive: true,
                 $buttonMode: true,
+                // $visible: false,
                 $addChild: false,
 
             });
@@ -194,6 +196,10 @@ export default class HomeTransform extends PIXI.Container {
             // itemObj.pivot.x = itemObj.width / 2;
             itemObj.on("pointertap", itemEvent = () => {
                 itemObj.scale.set(0.4);
+                this.Flag.forEach((item) => {
+                    item.visible = false;
+                })
+                this.Flag[index].visible = true;
                 createdSound({
                     $alias: "Button_mp3"
                 }); //按钮声音音效
@@ -209,6 +215,7 @@ export default class HomeTransform extends PIXI.Container {
             self.SceneEventArr.push(itemEvent);
             self.SceneArr.push(itemObj);
         });
+        //self.SceneArr[1].visible = true;
         //支持左右滑动效果
         this._Gb.timeln = new TimelineMax({
             onComplete: () => {
@@ -216,11 +223,11 @@ export default class HomeTransform extends PIXI.Container {
                 mySwiper.updateAll();
                 mySwiper.slideColorAlpha = 0;
                 mySwiper.slideWidth = 500;
-                mySwiper.slideHeight = 432;
+                mySwiper.slideHeight = 800;
                 mySwiper.swiperWidth = 1800; //总长
                 mySwiper.swiperHeight = 800;
                 mySwiper.x = 100;
-                mySwiper.y = 623;
+                mySwiper.y = 423;
                 mySwiper.slides = 3;
                 mySwiper.slideOffset = 200;
                 mySwiper.smoothingMode = false;
@@ -238,12 +245,27 @@ export default class HomeTransform extends PIXI.Container {
                         mySwiper.slideTo(mySwiper.realIndex)
                     }
                 });
+                self.Flag = [];
                 self.SceneArr.forEach((item, index) => {
+                    let Flag = null;
+                    Flag = createdSprite({
+                        $this: self,
+                        $alias: "Flash_jpg",
+                        $visible: false,
+                        $scale: 1.5,
+                        $visible: false,
+                        $addChild: false
+                    })
+                    this.Flag.push(Flag);
+                    Flag.x = -250;
+                    Flag.y = 100;
+                    mySwiper.slidesArr[index].addChild(Flag);
                     item.x = 200;
-                    item.y = 200;
+                    item.y = 400;
                     item.anchor.set(1 / 2, 1 / 2);
                     mySwiper.slidesArr[index].addChild(item);
-                })
+                });
+                //this.Flag[1].visible = true;
             }
         });
         //滑块事件结束

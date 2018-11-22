@@ -124,7 +124,6 @@ class RightDrawer extends PIXI.Container {
                                 //item2.on('pointerup', self.clothesItem_TapHandler.bind(self, self.clothesDrawerBtnArr[chothIndex]), self);
                             } else {
                                 //这个是清除按钮..
-                                console.log()
                                 item2.on("pointerdown", () => {
                                     clothes.visible = false;
                                     clothes0.visible = true;
@@ -260,10 +259,12 @@ class RightDrawer extends PIXI.Container {
                         icons0.visible = true;
 
                     });
-                    //icons0.on("pointerup", self.classDrawBtn_tapHandler.bind(self, i));
                     icons0.on('pointerup', () => {
                         icons.visible = true;
                         icons0.visible = false;
+                        //console.log("icon0...")
+                        //console.log(i);
+                        // console.log("i....")
                         self.classDrawBtn_tapHandler(i);
                     })
 
@@ -374,59 +375,63 @@ class RightDrawer extends PIXI.Container {
         }
         //类内部的小按钮事件...
     clothesLittleBtn_TapHandler(e) {
-            // console.log("小按钮事件...")
+            //console.log("小按钮事件...")
             const self = this;
-            if (this.clothesDrawerAnimating == false) {
-                //PIXI.sound.play('pullout')
-                this.hideclothesDrawer.call(this, () => {
-                    self.tickers.start();
+            // if (this.clothesDrawerAnimating == false) {
+            //PIXI.sound.play('pullout')
+            this.hideclothesDrawer.call(this, () => {
+                self.tickers.start();
 
-                });
-                this.showClassDrawer.call(this, () => {
-                    // self.clothesDrawerAnimating = false;
-                    self.classDrawerAnimating = false;
-                });
-                this.clothesDrawerAnimating = true;
-            }
+            });
+            // this.showClassDrawer.call(this, () => {
+            //     // self.clothesDrawerAnimating = false;
+            //     self.classDrawerAnimating = false;
+            // });
+            this.clothesDrawerAnimating = true;
+            // }
 
         }
         //类按钮事件...
     classDrawBtn_tapHandler(index, event) {
-
+        //console.log("classDrawBtn_tapHandler....")
         const self = this;
         // console.log("类事件发生...")
         // console.log(index);
         // console.log(event);
         if (this.classDrawer.getChildAt(0)._movedPosArr.length < 3) {
-            if (this.classDrawerAnimating == false) {
-                self.tickers.stop();
-                //self.upperLine.alpha = 0;
-                //self.downLine.alpha = 0;
+            //console.log("class内部...")
+            // if (this.classDrawerAnimating == false) {
+            //console.log("class内部内部...")
+            self.clothesLittleBtn_TapHandler();
+            self.tickers.stop();
+            //self.upperLine.alpha = 0;
+            //self.downLine.alpha = 0;
 
-                // PIXI.sound.play('pullout')
-                //this.hideClassDrawer();
-                this.showclothesDrawer(() => {
+            // PIXI.sound.play('pullout')
+            //this.hideClassDrawer();
+            //console.log("类按钮发生了这件事情...")
+            this.showclothesDrawer(() => {
 
-                    self.clothesDrawerAnimating = false;
-                });
-                this.classDrawerAnimating = true;
-                //console.log(this.classDrawerBtnArr[index])
-                //classicon@cloth@cloth@cloth_normal@normal_png
-                //let regs = this.classDrawerBtnArr[index].replace(/^classicon_|_png$/g, '');
-                let regs = this.classDrawerBtnArr[index].split("@")[1]
-                    //console.log(regs)
-                this.classIconName = this.classDrawerBtnArr[index];
-                // console.warn(this.classIconName);
-                // console.log("这个事件发生了...")
-                // console.log(this.classIconName + "_s");
-                //classicon@cloth@cloth@cloth_normal@normal_png_s
-                //console.log("这个加了_s...") //目的加小按钮
+                self.clothesDrawerAnimating = false;
+            });
+            this.classDrawerAnimating = true;
+            //console.log(this.classDrawerBtnArr[index])
+            //classicon@cloth@cloth@cloth_normal@normal_png
+            //let regs = this.classDrawerBtnArr[index].replace(/^classicon_|_png$/g, '');
+            let regs = this.classDrawerBtnArr[index].split("@")[1]
+                //console.log(regs)
+            this.classIconName = this.classDrawerBtnArr[index];
+            // console.warn(this.classIconName);
+            // console.log("这个事件发生了...")
+            // console.log(this.classIconName + "_s");
+            //classicon@cloth@cloth@cloth_normal@normal_png_s
+            //console.log("这个加了_s...") //目的加小按钮
 
-                this.clothesLittleBtn.texture = PIXI.Texture.from(this.classIconName + "_s");
-                this.clothesLittleBtn0.texture = PIXI.Texture.from(this.classIconName + "_s_click");
+            this.clothesLittleBtn.texture = PIXI.Texture.from(this.classIconName + "_s");
+            this.clothesLittleBtn0.texture = PIXI.Texture.from(this.classIconName + "_s_click");
 
-                self.setClothesDrawerArr.call(self, self._clothesObj[regs])
-            }
+            self.setClothesDrawerArr.call(self, self._clothesObj[regs])
+                // }
 
         }
     }
@@ -452,7 +457,7 @@ class RightDrawer extends PIXI.Container {
     }
 
     showclothesDrawer($callback = function() {}, $time = .3) {
-        PIXI.sound.play("Slide_mp3");
+        // PIXI.sound.play("Slide_mp3");
         TweenMax.to(this.clothesDrawer, $time, {
             x: 0,
             onComplete: function() {
@@ -462,12 +467,15 @@ class RightDrawer extends PIXI.Container {
     }
 
     hideclothesDrawer($callback = function() {}, $time = .3) {
-        PIXI.sound.play("Slide_mp3");
+        //PIXI.sound.play("Slide_mp3");
+        //console.log("hideclothesDrawer...")
+        //console.log(this.clothesDrawer)
         TweenMax.to(this.clothesDrawer, $time, {
             x: 250, //600
-            onComplete: function() {
-                $callback();
-            }
+            // onComplete: function() {
+            //     console.log("$callback...")
+            //     $callback();
+            // }
         })
     }
 }

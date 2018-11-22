@@ -2,74 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>DressClothGame</title>
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="学而思网校-英语预习游戏">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content="学而思网校-英语预习游戏" />
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-tap-highlight" content="no" />
     <meta name="full-screen" content="yes" />
     <meta name="x5-fullscreen" content="true" />
     <meta name="360-fullscreen" content="true" />
     <meta name="author" content="wangyanhui" />
-
-    <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>css/preload.css">
+    <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>css/preload.css" />
     <script type="text/javascript" src="<%= BASE_URL %>js/preload.js"></script>
-
 </head>
 
 <body>
     <noscript>
-        <strong>We're sorry but DressClothGame doesn't work properly without JavaScript enabled. Please enable it to
-            continue.</strong>
+      <strong
+        >We're sorry but DressClothGame doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
     </noscript>
     <div id="app"></div>
     <div class="container"></div>
     <!-- built files will be auto injected -->
     <div class="gameLoadingContainer">
         <!-- 删除这张图片 -->
-        <!-- <img class="bg" src="<%= BASE_URL %>img/bggaming.png" width="100%" height="100%"> -->
+        <!--
+        <img class="bg" src="<%= BASE_URL %>img/bggaming.png" width="100%" height="100%">
+      -->
+        <img id="ProLef0" src="./img/HomeLoading.png" />
+        <div id="loadingPosition">
+            <img class="ProBorde" src="./img/boot/RrogressBord.png" alt="" />
+            <img class="ProRig" src="./img/boot/RrogressRight.jpg" alt="" />
+            <img id="ProMid" src="./img/boot/ProgressMiddle.jpg" alt="" />
+            <img id="ProLef" src="./img/boot/ProgressLeft.jpg" alt="" />
+        </div>
     </div>
     <!-- 网络缓慢弹窗效果图 -->
     <div id="netbadbackground">
         <div id="netbadpopupband" class="popupband">
-            <img src="./img/dialog/pop.png" width="100%" height="100%">
-            <div id="gobackbuttonblack" class="goback">
-                <img src="./img/NormalClickBack.png" width="100%" height="100%">
-            </div>
-            <div id="gobackbutton" class="goback">
-                <img src="./img/NormalBack.png" width="100%" height="100%">
-            </div>
-            <div id="loadingPosition">
-                <img class="ProBorde" src="./img/boot/RrogressBord1.png" alt="">
-                <img class="ProRig" src="./img/boot/RrogressRight.png" alt="">
-                <img id="ProMid" src="./img/boot/ProgressMiddle.png" alt="">
-                <img id="ProLef" src="./img/boot/ProgressLeft.png" alt="">
-                <!-- <img id="loading" src="<%= BASE_URL %>img/boot/loadingbarlight.png" alt=""> -->
-            </div>
-            <div id="LoadingText">
-                Loading...
-            </div>
-            <div class="text" id="LoadingTextContent">当前页面加载缓慢，请稍等或检查网络信号
-            </div>
+            <!--
+          <img src="./img/dialog/pop.png" width="100%" height="100%">
+          <div id="gobackbuttonblack" class="goback">
+              <img src="./img/NormalClickBack.png" width="100%" height="100%">
+          </div>
+          <div id="gobackbutton" class="goback">
+              <img src="./img/NormalBack.png" width="100%" height="100%">
+          </div>
+        -->
+
+            <!--
+          <div id="LoadingText">
+              Loading...
+          </div>
+          <div class="text" id="LoadingTextContent">当前页面加载缓慢，请稍等或检查网络信号
+          </div>
+        -->
         </div>
     </div>
     <!-- 控制弹窗是否显示效果以及弹窗效果出现以后的方法 -->
     <script>
+        var UpAndDown = document.getElementById("ProLef0");
+        var UpAndDownNumber = 0;
+        var UpAndDownControl = 0;
+        var TimeOut = null;
+        TimeOut = setInterval(() => {
+            UpAndDownControl += 20
+            if (Math.floor(UpAndDownControl / 400) == 1) {
+                UpAndDownNumber -= 0.04;
+            } else {
+                UpAndDownNumber += 0.04;
+            }
+            UpAndDown.style.top = 2 - UpAndDownNumber + "rem";
+            //console.log(UpAndDownControl)
+        }, 20);
+
         function show() {
             setTimeout(() => {
+                TimeOut && clearTimeout(TimeOut);
                 if (document.getElementById("netbadbackground")) {
-                    document.getElementById("netbadbackground").style.visibility = "visible"; //背景图片
-                    document.getElementById("LoadingTextContent").style.visibility = "visible"; //背景文字
-                    document.getElementById("gobackbutton").style.visibility = "visible"; //显示按钮
+                    document.getElementById("netbadbackground").style.visibility =
+                        "visible"; //背景图片
+                    document.getElementById("LoadingTextContent").style.visibility =
+                        "visible"; //背景文字
+                    document.getElementById("gobackbutton").style.visibility =
+                        "visible"; //显示按钮
                     document.getElementById(
                         "gobackbutton"
                     ).onmousedown = gobackbuttonMouseDown_handler;
@@ -86,10 +111,10 @@
                         "gobackbutton"
                     ).onclick = gobackbuttonMouseClick_handler;
                     return;
-                };
+                }
                 console.log("没有东西啦");
             }, 5000);
-        };
+        }
         show();
 
         function gobackbuttonMouseDown_handler() {
@@ -111,17 +136,20 @@
             document.getElementById("gobackbutton").onclick = null;
             //返回主目录;
             window.parent.postMessage({
-                "type": "exitGame",
-                "game": 5,
-            }, "*");
+                    type: "exitGame",
+                    game: 5
+                },
+                "*"
+            );
         }
     </script>
     <!-- 这个是vscoder信息 -->
-    <!-- <script type="text/javascript" src="<%= BASE_URL %>js/vconsole.min.js"></script>
-    <script>
-        new VConsole();
-    </script> -->
-
+    <!--
+      <script type="text/javascript" src="<%= BASE_URL %>js/vconsole.min.js"></script>
+      <script>
+          new VConsole();
+      </script>
+    -->
 </body>
 
 </html>

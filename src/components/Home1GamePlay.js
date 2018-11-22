@@ -1,3 +1,4 @@
+//这个是游戏页
 import * as PIXI from "pixi.js";
 import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
@@ -139,6 +140,8 @@ export default class HomeGamePlay extends PIXI.Container {
             props1: null,
             shoes: null
         };
+        this.AllSlotName = []; //这个数据是获取在本次游戏装扮的数据 虽说数据有点耦合但为了保持和各个页面数据命名一样
+        this.UserName = null;
         this.DialogContainer = null;
         this.graphics = null;
         this.DialogSaveButtonNormal = null;
@@ -156,15 +159,16 @@ export default class HomeGamePlay extends PIXI.Container {
     addedHomePageStage() {
         (() => {
             this.Gender = null
+            this.AllSlotName = [];
         })()
         //测试使用
-        this.Gender = "girl";
+        //this.Gender = "girl";
         //this.Gender = "boy";
         //正式使用
-        //this.Gender = Garbage.getGarBage("Gender");
+        this.Gender = Garbage.getGarBage("Gender");
         //获取数据
-        this.classicon = Garbage.getGarBage("classicon");
-
+        this.classicon = Garbage.getGarBage("classicon"); //各个数据的类
+        (Garbage.getGarBage("allSlotName")) && (this.AllSlotName = Garbage.getGarBage("allSlotName")); //获取本次游戏装扮数据
         //声音
         this.PlayGameBgMp3 = createdSound({
             $alias: "PlayGameBg_mp3",
@@ -172,7 +176,6 @@ export default class HomeGamePlay extends PIXI.Container {
             $loop: true,
             $volume: 0.2
         });
-
         let self = this;
         createdSprite({
             $this: self,
@@ -339,7 +342,7 @@ export default class HomeGamePlay extends PIXI.Container {
             //console.log("...")
             let self = this;
 
-            self.getSlotAndAttacetment(clothDetailName); //把具体化
+            self.getSlotAndAttacetment(clothDetailName); //第一步把具体化
             //getSlotAndAttacetment(clothDetailName)
             //console.log(self.ClothDetail);
             //console.log("self.ClothDeatal...")
@@ -347,21 +350,21 @@ export default class HomeGamePlay extends PIXI.Container {
             if (self.ClothDetail.Cloth == "suit") {
                 let num = Number(self.ClothDetail.AttacetmentName);
                 self.Suit[self.Gender][num].forEach((item) => {
-                    self.getSlotAndAttacetment(item); //把具体化
-                    self.changeDress(); //换装 
+                    self.getSlotAndAttacetment(item); //第一步把具体化
+                    self.changeDress(); //第二步换装 
                     //换装声音
                     createdSound({
                         $alias: "ChangDressCloth_mp3",
                     });
                 });
-                self.SpineHappy(); //高兴一下
+                self.SpineHappy(); //第三步高兴一下
             } else {
-                self.changeDress(); //换装
+                self.changeDress(); //第二步换装
                 //换装声音
                 createdSound({
                     $alias: "ChangDressCloth_mp3",
                 });
-                self.SpineHappy(); //高兴一下
+                self.SpineHappy(); //第三步高兴一下
             }
 
         });
@@ -398,6 +401,16 @@ export default class HomeGamePlay extends PIXI.Container {
             }
 
         });
+        //这个是从本次装扮游戏中从时空页面返回到本次页面中保持原有的装扮状态
+        if (this.AllSlotName.length > 0) {
+            console.log("发生了这个状态...")
+            this.AllSlotName.forEach((item) => {
+                //第一步 是具体化  第二步 装扮
+                this.getSlotAndAttacetment(item); //第一步具体化
+                this.changeDress(); //换装
+
+            })
+        }
         //弹窗事件
         //公共弹窗
         this.DialogCommon = new DialogCommon();
@@ -452,8 +465,33 @@ export default class HomeGamePlay extends PIXI.Container {
             $buttonMode: true,
             $visible: false
         }).on("pointerup", this.DialogSaveButtonClickEvent = () => {
+            let self = this;
             this.DialogSaveButtonNormal.visible = true;
             this.DialogSaveButtonClick.visible = false;
+            //保存数据开始......
+            //第一步先得到名字  第二步 得到性别  第三步 具体的插件的名字 第四步发送数据
+            let sendDetailData = {};
+            let JsonSendDetailData;
+            this.UserName = Garbage.getGarBage("UserName"); //第一步
+            // this.Gender 第二步性别已经获取好了
+            let allSlotName = []; //第三步 具体的插件的名字
+            for (let item in this.allSlotName) {
+                allSlotName.push(this.allSlotName[item]);
+            }
+            sendDetailData[self.Gender] = allSlotName;
+            JsonSendDetailData = JSON.stringify(sendDetailData);
+            //第四步发送数据
+            window.postMessage({
+                    type: 'getGameRecord',
+                    game: 7,
+                    data: {
+                        'extData': {
+                            extData: JsonSendDetailData
+                        },
+                        'stuName': stuInfo[self.UserName] //这个有疑问
+                    }
+                }, "*")
+                //保存数据结束......
             self.clearClass();
             SceneManager.run(new HomePages());
         });
@@ -523,7 +561,6 @@ export default class HomeGamePlay extends PIXI.Container {
     }
     transformSlot() {
         let allSlotName = [];
-        //console.log(this.allSlotName + "...")
         for (let item in this.allSlotName) {
             allSlotName.push(this.allSlotName[item]);
         }

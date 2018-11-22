@@ -1,3 +1,4 @@
+//这个是具体时空页
 import * as PIXI from "pixi.js";
 import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";
@@ -66,18 +67,15 @@ export default class Home3Scene extends PIXI.Container {
         })()
         //接受参数
         //测试使用
-        this.Gender = "girl";
-        //this.Gender = Garbage.getGarBage("Gender");
-        this.classicon = Garbage.getGarBage("classicon");
-        //测试使用
+        //this.Gender = "girl";
+        //this.SceneNum = 1;
         //this.AllSlotName = [];
-        //正式使用
-        //获取动画具体要穿的衣服
-        this.AllSlotName = Garbage.getGarBage("allSlotName");
-        //获取背景图
-        //测试使用
-        this.SceneNum = 1;
-        //this.SceneNum = Garbage.getGarBage("ScenePosition");
+        //正式使用开始
+        this.Gender = Garbage.getGarBage("Gender");
+        this.classicon = Garbage.getGarBage("classicon");
+        this.AllSlotName = Garbage.getGarBage("allSlotName"); //获取动画具体要穿的衣服
+        this.SceneNum = Garbage.getGarBage("ScenePosition"); //获取背景图
+        //正式使用结束
         //背景声音
         this.PlayGameBgMp3 = createdSound({
             $alias: "PlayGameBg_mp3",

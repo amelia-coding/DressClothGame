@@ -1,3 +1,4 @@
+//这个是首页
 import * as PIXI from "pixi.js";
 import "pixi-spine"
 import PixiSlider from "../lib/PixiSlider.js";

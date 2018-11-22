@@ -22,7 +22,9 @@ export default {
   name: "App",
   data() {
     return {
-      baseUrl: process.env.BASE_URL
+      baseUrl: process.env.BASE_URL,
+      UserName: null,
+      HistoryData: null
     };
   },
   beforeCreate() {
@@ -52,10 +54,10 @@ export default {
       this.gameStart().then(() => {
         //console.log("开始加载首页...");
         //测试使用
-        //SceneManager.run(new HomePages());
+        SceneManager.run(new HomePages());
         //SceneManager.run(new HomeGamePlay());
         //SceneManager.run(new HomeTransform());
-        SceneManager.run(new Home3Scene());
+        //SceneManager.run(new Home3Scene());
       });
     },
     async gameStart() {
@@ -92,9 +94,13 @@ export default {
             .on("progress", loader => {
               if (document.getElementById("loadingPosition")) {
                 document.getElementById("ProMid").style.width =
-                  loader.progress * 0.0495 + 0.3 + "rem";
+                  loader.progress * 0.04 + 1 + "rem";
                 document.getElementById("ProLef").style.left =
-                  loader.progress * 2.472 + 48.8 + "%";
+                  loader.progress * 0.23 + 37 + "%";
+                // document.getElementById("ProLef0").style.top =
+                //   50 - loader.progress * 0.5 + "%";
+                // document.getElementById("ProLef0").style.left =
+                //   loader.progress * 0.7 + "%";
               }
             })
             .load(() => {
@@ -102,6 +108,31 @@ export default {
             });
         });
       });
+    },
+    //获取历史数据
+    getData_resource() {
+      let self = this;
+      window.postMessage(
+        {
+          type: "getGameRecord",
+          game: 7
+        },
+        "*"
+      );
+      window.addEventListener("message", getHistoryData);
+      getHistoryData = $event => {
+        if ($event.data.type == "getGameRecord") {
+          //获取名字
+          self.UserName = $event.data.data.stuName.stuInfo.stuName;
+          //把这个数据放到全局环境
+          Garbage.clearGarBage("UserName");
+          Garbage.setGarBage("UserName", self.UserName);
+          //获取装扮数据
+          self.HistoryData = JSON.parse($event.data.data.extData); //这个数据就是 self.HistoryData = {boy:[],girl:[]};
+        }
+        //解除绑定
+        window.removeEventListener("message", getHistoryData);
+      };
     }
   }
 };
